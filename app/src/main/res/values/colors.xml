@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#33CA7F</color>
+    <color name="colorPrimaryDark">#33CA7F</color>
+    <color name="colorAccent">#1abc9c</color>
+
+
+    <!-- 常用颜色值 -->
+    <color name="white">#FFFFFF</color>
+
+    <color name="black">#000000</color>
+    <color name="grey">#9E9E9E</color>
+    <color name="transparent">#00000000</color>
+    <color name="main_green">#0b9a27</color>
+
+    <color name="green_light">#33CA7F</color>
+    <color name="white_light">#F0F1F5</color>
+
+
+    <color name="retry_bg_pressed">#9E9E9E</color>
+    <color name="retry_bg_normal">#fff</color>
+
+    <color name="grey_light">#C7C5C8</color>
+
+    <!--银灰色-->
+    <color name="divide_line_silver">#bdc3c7</color>
+    <!--白云色-->
+    <color name="tabhost_bg_clouds">#ecf0f1</color>
+
+    <!--refresh color-->
+    <color name="refresh1">@color/green_light</color>
+    <color name="refresh2">#60bcf1</color>
+    <color name="refresh3">#60f1c1</color>
 </resources>

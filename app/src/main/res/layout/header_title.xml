@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="43dp"
+    android:background="@color/green_light">
+
+    <EditText
+
+        android:id="@+id/et_search"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/search_bg"
+        android:drawableLeft="@drawable/search_green"
+        android:drawablePadding="10dp"
+        android:hint="@string/search_hint"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:lines="1"
+        android:minLines="1"
+        android:paddingBottom="3dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="15dp"
+        android:paddingTop="3dp"
+        android:textColorHint="@color/grey_light"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/iv_voice_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingBottom="4dp"
+        android:paddingRight="6dp"
+        android:src="@drawable/voice_search" />
+</RelativeLayout>
