@@ -7,12 +7,7 @@
 
     <include layout="@layout/header_title" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:background="@color/grey"
-        android:gravity="center"
-        android:text="等待设计界面" />
+
 
     <include layout="@layout/item_viewpager" />
 </LinearLayout>

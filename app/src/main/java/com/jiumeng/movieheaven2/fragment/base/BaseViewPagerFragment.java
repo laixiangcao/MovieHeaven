@@ -7,14 +7,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.adapter.ViewPageFragmentAdapter;
 import com.jiumeng.movieheaven2.bean.ViewPageInfo;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

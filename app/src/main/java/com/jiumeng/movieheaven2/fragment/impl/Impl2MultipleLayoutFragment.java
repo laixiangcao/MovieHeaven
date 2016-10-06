@@ -2,7 +2,6 @@ package com.jiumeng.movieheaven2.fragment.impl;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.jiumeng.movieheaven2.adapter.RecyclerViewBaseAdapter;
@@ -18,11 +17,9 @@ import com.jiumeng.movieheaven2.utils.PrefUtils;
 import com.jiumeng.movieheaven2.utils.UIUtils;
 import com.jiumeng.movieheaven2.views.LoadingPage;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import cz.msebera.android.httpclient.Header;
 
 /**

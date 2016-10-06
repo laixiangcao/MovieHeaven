@@ -50,15 +50,7 @@ public class RecyclerViewBaseAdapter extends BaseMultiItemQuickAdapter<MultipleI
                 if (data2.jpgList != null) {
                     if (data2.jpgList.size() > 0) {
                         Uri uri = Uri.parse(data2.jpgList.get(0));
-                        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-                                .setProgressiveRenderingEnabled(true)
-                                .build();
-                        DraweeController controller = Fresco.newDraweeControllerBuilder()
-                                .setImageRequest(request)
-                                .setOldController(imageView.getController())
-                                .build();
-                        imageView.setController(controller);
-//                        imageView.setImageURI(uri);
+                        imageView.setImageURI(uri);
                     }
                 }
                 baseViewHolder.setText(R.id.tv_name, data2.minName);

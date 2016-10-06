@@ -10,7 +10,6 @@ import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.adapter.ViewPageFragmentAdapter;
 import com.jiumeng.movieheaven2.bean.ViewPageInfo;
 import com.jiumeng.movieheaven2.fragment.base.BaseLoadFragment;
-import com.jiumeng.movieheaven2.fragment.viewpager.AmericaVpFragment;
 import com.jiumeng.movieheaven2.fragment.viewpager.ClassicsVpFragment;
 import com.jiumeng.movieheaven2.fragment.viewpager.HotestVpFragment;
 import com.jiumeng.movieheaven2.fragment.viewpager.NewestVpFragment;
@@ -63,7 +62,6 @@ public class RecommendFragment extends BaseLoadFragment {
         viewPageInfos.add(new ViewPageInfo(strings[1], "newest", NewestVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_NEWEST)));
         viewPageInfos.add(new ViewPageInfo(strings[2], "hotest", HotestVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_HOTTEST)));
         viewPageInfos.add(new ViewPageInfo(strings[3], "classics", ClassicsVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_SCIENCE_FICTION)));
-        viewPageInfos.add(new ViewPageInfo(strings[4], "america", AmericaVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_COMEDY)));
         return viewPageInfos;
     }
 
