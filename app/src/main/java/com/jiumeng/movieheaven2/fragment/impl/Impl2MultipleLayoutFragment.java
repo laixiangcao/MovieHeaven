@@ -6,8 +6,8 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.jiumeng.movieheaven2.adapter.RecyclerViewBaseAdapter;
-import com.jiumeng.movieheaven2.bean.MovieDao;
-import com.jiumeng.movieheaven2.bean.MultipleItem;
+import com.jiumeng.movieheaven2.entity.MovieEntity;
+import com.jiumeng.movieheaven2.entity.MultipleItemEntity;
 import com.jiumeng.movieheaven2.fragment.base.BaseMultipleLayoutFragment;
 import com.jiumeng.movieheaven2.utils.UIUtils;
 
@@ -21,9 +21,9 @@ import java.util.List;
 public abstract class Impl2MultipleLayoutFragment extends BaseMultipleLayoutFragment {
 
     private RecyclerViewBaseAdapter mAdapter;
-    private List<MultipleItem> initData;
-    private ArrayList<MovieDao> datalist=new ArrayList<>();
-    private ArrayList<ArrayList<MovieDao>> initDataList;
+    private List<MultipleItemEntity> initData;
+    private ArrayList<MovieEntity> datalist=new ArrayList<>();
+    private ArrayList<ArrayList<MovieEntity>> initDataList;
 
 
     @Override
@@ -34,7 +34,7 @@ public abstract class Impl2MultipleLayoutFragment extends BaseMultipleLayoutFrag
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                MultipleItem item = (MultipleItem) baseQuickAdapter.getData().get(i);
+                MultipleItemEntity item = (MultipleItemEntity) baseQuickAdapter.getData().get(i);
                 UIUtils.showToast(item.getData().minName);
             }
         });
@@ -45,9 +45,9 @@ public abstract class Impl2MultipleLayoutFragment extends BaseMultipleLayoutFrag
     protected abstract int getMovieType();
 
     @Override
-    public abstract List<MultipleItem> setMultipeItem(ArrayList<MovieDao> data);
+    public abstract List<MultipleItemEntity> setMultipeItem(ArrayList<MovieEntity> data);
 
-    public abstract List<MultipleItem> setMultipeItem2(ArrayList<ArrayList<MovieDao>> data);
+    public abstract List<MultipleItemEntity> setMultipeItem2(ArrayList<ArrayList<MovieEntity>> data);
 
     protected void addHeaderView(View view) {
         mAdapter.addHeaderView(view);

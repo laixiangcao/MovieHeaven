@@ -1,4 +1,4 @@
-package com.jiumeng.movieheaven2.bean;
+package com.jiumeng.movieheaven2.entity;
 
 
 import com.jiumeng.movieheaven2.R;
@@ -7,7 +7,7 @@ import com.jiumeng.movieheaven2.fragment.tabhost.DiscoverFragment;
 import com.jiumeng.movieheaven2.fragment.tabhost.MyInfoFragment;
 import com.jiumeng.movieheaven2.fragment.tabhost.RecommendFragment;
 
-public enum MainTab {
+public enum MainTabEntity {
 
     NEWS(0, R.string.main_tab__name_recommend, R.drawable.tab_icon_new, RecommendFragment.class),
 
@@ -22,7 +22,7 @@ public enum MainTab {
     private int resIcon;
     private Class<?> clz;
 
-    MainTab(int idx, int resName, int resIcon, Class<?> clz) {
+    MainTabEntity(int idx, int resName, int resIcon, Class<?> clz) {
         this.idx = idx;
         this.resName = resName;
         this.resIcon = resIcon;

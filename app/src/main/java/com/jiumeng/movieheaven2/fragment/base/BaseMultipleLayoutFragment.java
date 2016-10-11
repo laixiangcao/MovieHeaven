@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.jiumeng.movieheaven2.R;
-import com.jiumeng.movieheaven2.bean.MovieDao;
-import com.jiumeng.movieheaven2.bean.MultipleItem;
+import com.jiumeng.movieheaven2.entity.MovieEntity;
+import com.jiumeng.movieheaven2.entity.MultipleItemEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +62,7 @@ public abstract class BaseMultipleLayoutFragment extends BaseLoadFragment implem
      * 设置多布局
      * @return
      */
-    public abstract List<MultipleItem> setMultipeItem(ArrayList<MovieDao> data);
+    public abstract List<MultipleItemEntity> setMultipeItem(ArrayList<MovieEntity> data);
 
 
 }

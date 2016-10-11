@@ -2,7 +2,7 @@ package com.jiumeng.movieheaven2.provider;
 
 import android.util.Log;
 
-import com.jiumeng.movieheaven2.bean.MovieDao;
+import com.jiumeng.movieheaven2.entity.MovieEntity;
 import com.jiumeng.movieheaven2.utils.UIUtils;
 
 import java.util.ArrayList;
@@ -37,10 +37,10 @@ public class ProcessData {
      * @param text 网页文本
      * @return 电影集合
      */
-    public static ArrayList<MovieDao> parsePageData(String text) {
+    public static ArrayList<MovieEntity> parsePageData(String text) {
         String contents;
         // 截取网页主要文本文本
-        ArrayList<MovieDao> movieList;
+        ArrayList<MovieEntity> movieList;
         int index1 = text.indexOf("co_content8");
         int index2 = text.indexOf("尾页");
         if (index1 != -1 && index2 != -1) {
@@ -53,7 +53,7 @@ public class ProcessData {
 
         for (String s : split) {
             String content = s.replaceAll("\r\n", "").replaceAll(" ", "");
-            MovieDao movieDao = new MovieDao();
+            MovieEntity movieDao = new MovieEntity();
             // 获取url连接
             int index3 = content.indexOf("<ahref=\"");
 
@@ -125,7 +125,7 @@ public class ProcessData {
     //海报图 详情图 下载链接 片长 导演 主演 文件大小 简介 年代  国家  语言 字幕
     //
     // 截取网页主要文本文本
-    public static MovieDao parseMovieDetails(String text,MovieDao movie,boolean isLoadAll) {
+    public static MovieEntity parseMovieDetails(String text, MovieEntity movie, boolean isLoadAll) {
         try {
             String contents;
             int index1 = text.indexOf("title_all");

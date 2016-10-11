@@ -1,7 +1,7 @@
 package com.jiumeng.movieheaven2.fragment.viewpager;
 
-import com.jiumeng.movieheaven2.bean.MovieDao;
-import com.jiumeng.movieheaven2.bean.MultipleItem;
+import com.jiumeng.movieheaven2.entity.MovieEntity;
+import com.jiumeng.movieheaven2.entity.MultipleItemEntity;
 import com.jiumeng.movieheaven2.fragment.impl.ImplMultipleLayoutFragment;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +18,10 @@ public class NewestVpFragment extends ImplMultipleLayoutFragment {
     }
 
     @Override
-    public List<MultipleItem> setMultipeItem(ArrayList<MovieDao> data) {
-        List<MultipleItem> initData = new ArrayList<>();
-        for (MovieDao movieDao : data) {
-            initData.add(new MultipleItem(MultipleItem.GRID, 1, movieDao));
+    public List<MultipleItemEntity> setMultipeItem(ArrayList<MovieEntity> data) {
+        List<MultipleItemEntity> initData = new ArrayList<>();
+        for (MovieEntity movieDao : data) {
+            initData.add(new MultipleItemEntity(MultipleItemEntity.GRID, 1, movieDao));
         }
         return initData;
     }

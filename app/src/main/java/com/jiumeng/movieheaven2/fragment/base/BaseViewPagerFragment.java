@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.adapter.ViewPageFragmentAdapter;
-import com.jiumeng.movieheaven2.bean.ViewPageInfo;
+import com.jiumeng.movieheaven2.entity.ViewPageInfoEntity;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import java.util.List;
 import butterknife.BindView;
@@ -46,7 +46,7 @@ public abstract class BaseViewPagerFragment extends Fragment {
     /**
      * 添加tab标签的
      */
-    protected abstract List<ViewPageInfo> onSetupTabAdapter();
+    protected abstract List<ViewPageInfoEntity> onSetupTabAdapter();
 
 
     /**

@@ -1,6 +1,6 @@
 package com.jiumeng.movieheaven2.provider;
 
-import com.jiumeng.movieheaven2.bean.MovieDao;
+import com.jiumeng.movieheaven2.entity.MovieEntity;
 import com.jiumeng.movieheaven2.utils.PrefUtils;
 import com.jiumeng.movieheaven2.views.LoadingPage;
 
@@ -13,8 +13,8 @@ import java.util.List;
 
 public class DataTools {
     //读取本地缓存
-    public static List<MovieDao> getCacheData(int type) {
-        return (List<MovieDao>) PrefUtils.readObject("CacheData:" + type);
+    public static List<MovieEntity> getCacheData(int type) {
+        return (List<MovieEntity>) PrefUtils.readObject("CacheData:" + type);
     }
 
     //判断缓存是否失效

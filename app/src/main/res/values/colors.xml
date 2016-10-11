@@ -31,4 +31,6 @@
     <color name="refresh1">@color/green_light</color>
     <color name="refresh2">#60bcf1</color>
     <color name="refresh3">#60f1c1</color>
+
+    <color name="list_divider_color">#DADADA</color>
 </resources>

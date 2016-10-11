@@ -7,8 +7,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.adapter.RecyclerViewBaseAdapter;
-import com.jiumeng.movieheaven2.bean.MovieDao;
-import com.jiumeng.movieheaven2.bean.MultipleItem;
+import com.jiumeng.movieheaven2.entity.MovieEntity;
+import com.jiumeng.movieheaven2.entity.MultipleItemEntity;
 import com.jiumeng.movieheaven2.fragment.base.BaseMultipleLayoutFragment;
 import com.jiumeng.movieheaven2.network.MyStringCallback;
 import com.jiumeng.movieheaven2.network.NetWorkApi;
@@ -29,7 +29,7 @@ public abstract class ImplMultipleLayoutFragment extends BaseMultipleLayoutFragm
     private int mCurrentPage = 1;
     private View notLoadingView;
     private int mPageCount;
-    private List<MultipleItem> initData;
+    private List<MultipleItemEntity> initData;
     private String firstID;
 
     @Override
@@ -45,14 +45,14 @@ public abstract class ImplMultipleLayoutFragment extends BaseMultipleLayoutFragm
         mAdapter.setSpanSizeLookup(new BaseQuickAdapter.SpanSizeLookup() {
             @Override
             public int getSpanSize(GridLayoutManager gridLayoutManager, int i) {
-                List<MultipleItem> data = mAdapter.getData();
+                List<MultipleItemEntity> data = mAdapter.getData();
                 return data.get(i).getSpanSize();
             }
         });
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                MultipleItem item = (MultipleItem) baseQuickAdapter.getData().get(i);
+                MultipleItemEntity item = (MultipleItemEntity) baseQuickAdapter.getData().get(i);
                 UIUtils.showToast(item.getData().minName);
             }
         });
@@ -63,7 +63,7 @@ public abstract class ImplMultipleLayoutFragment extends BaseMultipleLayoutFragm
     protected abstract int getMovieType();
 
     @Override
-    public abstract List<MultipleItem> setMultipeItem(ArrayList<MovieDao> data);
+    public abstract List<MultipleItemEntity> setMultipeItem(ArrayList<MovieEntity> data);
 
     protected void addHeaderView(View view) {
         mAdapter.addHeaderView(view);
@@ -83,7 +83,7 @@ public abstract class ImplMultipleLayoutFragment extends BaseMultipleLayoutFragm
             @Override
             public void onResponse(String response, int id) {
                 mPageCount = ProcessData.getPages(response);
-                ArrayList<MovieDao> data = ProcessData.parsePageData(response);
+                ArrayList<MovieEntity> data = ProcessData.parsePageData(response);
                 if (isFirstLoad) {
                     initData = setMultipeItem(data);
                     loadDataComplete(DataTools.checkData(initData));
@@ -115,7 +115,7 @@ public abstract class ImplMultipleLayoutFragment extends BaseMultipleLayoutFragm
             NetWorkApi.getPageInfoFromNet(getMovieType(), ++mCurrentPage, this, new MyStringCallback() {
                 @Override
                 public void onResponse(String response, int id) {
-                    ArrayList<MovieDao> datalist = ProcessData.parsePageData(response);
+                    ArrayList<MovieEntity> datalist = ProcessData.parsePageData(response);
                     if (datalist == null) {
                         //当加载更多数据返回数据为null时，显示加载失败的布局
                         //点击重新加载 会默认再次调用 加载更多的方法，所以这里需要将当前的页数减一
@@ -140,18 +140,18 @@ public abstract class ImplMultipleLayoutFragment extends BaseMultipleLayoutFragm
         mSwipRefresh.postDelayed(new Runnable() {
             @Override
             public void run() {
-                MultipleItem multipleItem = (MultipleItem) mAdapter.getData().get(0);
+                MultipleItemEntity multipleItem = (MultipleItemEntity) mAdapter.getData().get(0);
                 firstID = multipleItem.getData().id;
                 initPageData(false);
             }
         }, 1000);
     }
 
-    private void setRefreshData(ArrayList<MovieDao> data) {
+    private void setRefreshData(ArrayList<MovieEntity> data) {
         //刷新时重新获取第一页的数据，将第一页数据的第一个Movie的id
         // 与当前列表展示的第一个Movie的id 对比
-        ArrayList<MovieDao> newData = new ArrayList<>();
-        for (MovieDao movieDao : data) {
+        ArrayList<MovieEntity> newData = new ArrayList<>();
+        for (MovieEntity movieDao : data) {
             if (movieDao.id.equals(firstID)) {
                 break;
             } else {
@@ -159,7 +159,7 @@ public abstract class ImplMultipleLayoutFragment extends BaseMultipleLayoutFragm
             }
         }
         if (newData.size() != 0) {
-            List<MultipleItem> newDataList = setMultipeItem(newData);
+            List<MultipleItemEntity> newDataList = setMultipeItem(newData);
             mAdapter.getData().addAll(0, newDataList);
             mAdapter.notifyDataSetChanged();
         } else {

@@ -1,6 +1,6 @@
 package com.jiumeng.movieheaven2.provider;
 
-import com.jiumeng.movieheaven2.bean.MovieDao;
+import com.jiumeng.movieheaven2.entity.MovieEntity;
 
 import java.util.Comparator;
 
@@ -13,8 +13,8 @@ import java.util.Comparator;
 
 public class MovieListSort implements Comparator {
     public int compare(Object o1, Object o2) {
-        MovieDao movie = (MovieDao) o1;
-        MovieDao movie2 = (MovieDao) o2;
+        MovieEntity movie = (MovieEntity) o1;
+        MovieEntity movie2 = (MovieEntity) o2;
         String time1 = movie.updatetime.replaceAll("-", "");
         String time2 = movie2.updatetime.replaceAll("-", "");
         return time2.compareTo(time1);

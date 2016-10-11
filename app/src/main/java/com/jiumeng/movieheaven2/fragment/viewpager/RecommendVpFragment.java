@@ -16,7 +16,7 @@ import com.jiumeng.movieheaven2.R;
 public class RecommendVpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_my_information,null);
+        return inflater.inflate(R.layout.fragment_base_support_multiple_layout,null);
     }
 //    @Override
 //    protected int getMovieType() {

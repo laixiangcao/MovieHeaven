@@ -16,46 +16,36 @@
             android:id="@+id/fl_pic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/iv_img"
-                android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"/>
+                android:layout_height="150dp"
+                android:scaleType="fitXY" />
 
             <TextView
-                android:gravity="center"
-                android:background="#8ccc"
                 android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
+                android:background="#8ccc"
+                android:gravity="center"
                 android:maxLines="1"
                 android:padding="2dp"
-                android:textColor="@color/white"
                 android:text="星际迷航3：超越星辰"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
-
         </FrameLayout>
 
-
-        <!--<TextView-->
-            <!--android:id="@+id/tv_grade"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@id/fl_pic"-->
-            <!--android:layout_marginLeft="1dp"-->
-            <!--android:padding="1dp"-->
-            <!--android:text="评分:9.6分"-->
-            <!--android:textSize="12sp" />-->
         <RatingBar
             android:id="@+id/rb_grade"
             style="@style/roomRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/fl_pic"
             android:layout_marginLeft="1dp"
-            android:padding="1dp"
             android:numStars="5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:padding="1dp" />
 
         <TextView
             android:id="@+id/tv_update"

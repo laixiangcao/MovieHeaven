@@ -1,7 +1,7 @@
 package com.jiumeng.movieheaven2.fragment.viewpager;
 
-import com.jiumeng.movieheaven2.bean.MovieDao;
-import com.jiumeng.movieheaven2.bean.MultipleItem;
+import com.jiumeng.movieheaven2.entity.MovieEntity;
+import com.jiumeng.movieheaven2.entity.MultipleItemEntity;
 import com.jiumeng.movieheaven2.fragment.impl.ImplMultipleLayoutFragment;
 
 import java.util.ArrayList;
@@ -20,10 +20,10 @@ public class HotestVpFragment extends ImplMultipleLayoutFragment {
     }
 
     @Override
-    public List<MultipleItem> setMultipeItem(ArrayList<MovieDao> data) {
-        List<MultipleItem> initData = new ArrayList<>();
-        for (MovieDao movieDao : data) {
-            initData.add(new MultipleItem(MultipleItem.LIST,3,movieDao));
+    public List<MultipleItemEntity> setMultipeItem(ArrayList<MovieEntity> data) {
+        List<MultipleItemEntity> initData = new ArrayList<>();
+        for (MovieEntity movieDao : data) {
+            initData.add(new MultipleItemEntity(MultipleItemEntity.LIST,3,movieDao));
         }
         return initData;
     }

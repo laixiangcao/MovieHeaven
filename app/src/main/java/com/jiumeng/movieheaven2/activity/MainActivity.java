@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import com.jiumeng.movieheaven2.R;
-import com.jiumeng.movieheaven2.bean.MainTab;
+import com.jiumeng.movieheaven2.entity.MainTabEntity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -40,8 +40,8 @@ public class MainActivity extends FragmentActivity implements TabHost.OnTabChang
     }
     private void initTabs() {
 
-        MainTab[] tabs = MainTab.values();
-        for (MainTab mainTab : tabs) {
+        MainTabEntity[] tabs = MainTabEntity.values();
+        for (MainTabEntity mainTab : tabs) {
             //实例化一个Tab标签view
             View indicator = mLayoutInflater.inflate(R.layout.tab_indicator, null);
             TextView title = (TextView) indicator.findViewById(R.id.tab_title);

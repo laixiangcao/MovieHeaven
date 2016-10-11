@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.adapter.ViewPageFragmentAdapter;
-import com.jiumeng.movieheaven2.bean.ViewPageInfo;
+import com.jiumeng.movieheaven2.entity.ViewPageInfoEntity;
 import com.jiumeng.movieheaven2.fragment.base.BaseLoadFragment;
 import com.jiumeng.movieheaven2.fragment.viewpager.ClassicsVpFragment;
 import com.jiumeng.movieheaven2.fragment.viewpager.HotestVpFragment;
@@ -55,13 +55,13 @@ public class RecommendFragment extends BaseLoadFragment {
     }
 
 
-    private List<ViewPageInfo> onSetupTabAdapter() {
+    private List<ViewPageInfoEntity> onSetupTabAdapter() {
         String[] strings = getContext().getResources().getStringArray(R.array.recommend_indicator_names);
-        ArrayList<ViewPageInfo> viewPageInfos = new ArrayList<>();
-        viewPageInfos.add(new ViewPageInfo(strings[0], "recommend", RecommendVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_ACTION)));
-        viewPageInfos.add(new ViewPageInfo(strings[1], "newest", NewestVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_NEWEST)));
-        viewPageInfos.add(new ViewPageInfo(strings[2], "hotest", HotestVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_HOTTEST)));
-        viewPageInfos.add(new ViewPageInfo(strings[3], "classics", ClassicsVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_SCIENCE_FICTION)));
+        ArrayList<ViewPageInfoEntity> viewPageInfos = new ArrayList<>();
+        viewPageInfos.add(new ViewPageInfoEntity(strings[0], "recommend", RecommendVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_ACTION)));
+        viewPageInfos.add(new ViewPageInfoEntity(strings[1], "newest", NewestVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_NEWEST)));
+        viewPageInfos.add(new ViewPageInfoEntity(strings[2], "hotest", HotestVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_HOTTEST)));
+        viewPageInfos.add(new ViewPageInfoEntity(strings[3], "classics", ClassicsVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_SCIENCE_FICTION)));
         return viewPageInfos;
     }
 

@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.util.ArrayMap;
 import android.support.v4.view.PagerAdapter;
-import com.jiumeng.movieheaven2.bean.ViewPageInfo;
+import com.jiumeng.movieheaven2.entity.ViewPageInfoEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,10 +17,10 @@ import java.util.Map;
 public class ViewPageFragmentAdapter extends FragmentStatePagerAdapter {
 
     private final Context mContext;
-    private List<ViewPageInfo> mTabs = new ArrayList<>();
+    private List<ViewPageInfoEntity> mTabs = new ArrayList<>();
     private Map<String, Fragment> mFragments = new ArrayMap<>();
 
-    public ViewPageFragmentAdapter(Context context,FragmentManager fm, List<ViewPageInfo> viewPageInfoData) {
+    public ViewPageFragmentAdapter(Context context,FragmentManager fm, List<ViewPageInfoEntity> viewPageInfoData) {
         super(fm);
         mContext = context;
         mTabs=viewPageInfoData;
@@ -38,7 +38,7 @@ public class ViewPageFragmentAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        ViewPageInfo info = mTabs.get(position);
+        ViewPageInfoEntity info = mTabs.get(position);
         Fragment fragment = mFragments.get(info.tag);
         if (fragment == null) {
             fragment = Fragment.instantiate(mContext,info.clss.getName());
@@ -53,7 +53,7 @@ public class ViewPageFragmentAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         return mTabs.get(position).title;
     }
-    public void updateFragment(List<ViewPageInfo> info) {
+    public void updateFragment(List<ViewPageInfoEntity> info) {
         if (info == null) {
             return;
         }

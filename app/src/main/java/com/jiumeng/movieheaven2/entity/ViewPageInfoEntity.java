@@ -1,11 +1,11 @@
-package com.jiumeng.movieheaven2.bean;
+package com.jiumeng.movieheaven2.entity;
 
 import android.os.Bundle;
 
 import java.io.Serializable;
 
 
-public class ViewPageInfo implements Serializable {
+public class ViewPageInfoEntity implements Serializable {
 
 
     public String title;
@@ -13,7 +13,7 @@ public class ViewPageInfo implements Serializable {
     public  Class<?> clss;
     public Bundle mBundle;
 
-    public ViewPageInfo(String _title, String _tag, Class<?> _class, Bundle bundle) {
+    public ViewPageInfoEntity(String _title, String _tag, Class<?> _class, Bundle bundle) {
         title = _title;
         tag = _tag;
         clss = _class;
