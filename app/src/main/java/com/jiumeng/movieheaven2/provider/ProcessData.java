@@ -102,6 +102,12 @@ public class ProcessData {
 
             // 获取类型
             int index13 = content.indexOf("类型");
+            if (index13==-1){
+                index13=content.indexOf("类　　别");
+                if (index13!=-1){
+                    index13+=2;
+                }
+            }
             int index14 = content.indexOf("◎", index13);
             if (index13 != -1 && index14 != -1) {
                 movieDao.category = content.substring(index13 + 3, index14);

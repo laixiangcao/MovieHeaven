@@ -1,7 +1,8 @@
 package com.jiumeng.movieheaven2.network;
 
-import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * 实现请求网络数据的封装
@@ -69,7 +70,7 @@ public class NetWorkApi {
     public static final int MVOIETYPE_TERROR = 13;
 
 
-    private final static String MYHOST = "http://oaydggmwi.bkt.clouddn.com";//主连接
+    public final static String MYHOST = "http://oaydggmwi.bkt.clouddn.com";//主连接
     public final static String HOST = "http://www.dy2018.com";//主连接
 
     /**
@@ -79,7 +80,7 @@ public class NetWorkApi {
      * @param page    页
      * @param handler 接收请求结果的handler
      */
-    public static void getPageInfoFromNet(int catalog, int page, AsyncHttpResponseHandler handler) {
+    public static void getPageInfoFromNet(int catalog, int page, Object tag, MyStringCallback handler) {
         String path = "";
         switch (catalog) {
             case MVOIETYPE_NEWEST:
@@ -177,10 +178,22 @@ public class NetWorkApi {
                 path = MYHOST + "/CinemaMovie/CinemaMovieList" + page + ".json";
                 break;
         }
-        AsyncHttpClientApi.requestData(path, handler);
+        AsyncHttpClientApi.requestData(path, tag, handler);
     }
 
-    public static void getMovieDetailInfo(String url, AsyncHttpResponseHandler handler) {
-        AsyncHttpClientApi.requestData(url, handler);
+    public static void getMovieDetailInfo(String url, Object tag, MyStringCallback handler) {
+        AsyncHttpClientApi.requestData(url, tag, handler);
+    }
+
+    public static boolean urlIsAvailable(String url) {
+        try {
+            HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+            conn.setReadTimeout(3000);
+            conn.setConnectTimeout(3000);
+            return conn.getResponseCode()==200;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

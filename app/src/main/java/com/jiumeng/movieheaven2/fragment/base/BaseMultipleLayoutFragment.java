@@ -1,6 +1,7 @@
 package com.jiumeng.movieheaven2.fragment.base;
 
 import android.support.annotation.ColorInt;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -14,13 +15,12 @@ import java.util.List;
 import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
 /**
  * Created by jiumeng on 2016/10/4.
  */
 
-public abstract class BaseMultipleLayoutFragment extends BaseLoadFragment implements WaveSwipeRefreshLayout.OnRefreshListener {
+public abstract class BaseMultipleLayoutFragment extends BaseLoadFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     @BindColor(R.color.white)
     @ColorInt
@@ -30,7 +30,7 @@ public abstract class BaseMultipleLayoutFragment extends BaseLoadFragment implem
     RecyclerView mRecyclerView;
     @BindView(R.id.wsrl_refresh)
     protected
-    WaveSwipeRefreshLayout mSwipRefresh;
+    SwipeRefreshLayout mSwipRefresh;
 
 
     @Override
@@ -49,8 +49,7 @@ public abstract class BaseMultipleLayoutFragment extends BaseLoadFragment implem
 
     protected void initSwipRefreshView(){
         mSwipRefresh.setOnRefreshListener(this);
-        mSwipRefresh.setWaveColor(refreshColor);
-        mSwipRefresh.setMaxDropHeight(700);
+        mSwipRefresh.setColorSchemeColors(refreshColor);
         int[] colors = {R.color.refresh1, R.color.refresh2, R.color.refresh3};
         mSwipRefresh.setColorSchemeResources(colors);//设置进度动画的颜色。
     }
@@ -64,5 +63,6 @@ public abstract class BaseMultipleLayoutFragment extends BaseLoadFragment implem
      * @return
      */
     public abstract List<MultipleItem> setMultipeItem(ArrayList<MovieDao> data);
+
 
 }

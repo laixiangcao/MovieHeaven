@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="5dp"
-    app:cardElevation="5dp">
+    app:cardCornerRadius="3dp"
+    app:cardElevation="1dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -16,10 +16,9 @@
             android:id="@+id/fl_pic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.facebook.drawee.view.SimpleDraweeView
+            <ImageView
                 android:id="@+id/iv_img"
-                app:placeholderImageScaleType="fitXY"
-                app:placeholderImage="@drawable/default_movie_image"
+                android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"/>
 

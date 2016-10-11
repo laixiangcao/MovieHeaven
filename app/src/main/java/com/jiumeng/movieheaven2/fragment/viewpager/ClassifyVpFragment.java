@@ -24,12 +24,7 @@ public class ClassifyVpFragment extends ImplMultipleLayoutFragment {
     public List<MultipleItem> setMultipeItem(ArrayList<MovieDao> data) {
         List<MultipleItem> initData = new ArrayList<>();
         for (MovieDao movieDao : data) {
-//            if (movieDao.minName.length() > 8) {
-//                initData.add(new MultipleItem(MultipleItem.LIST, 2, movieDao));
-//            } else {
-//                initData.add(new MultipleItem(MultipleItem.LIST, 1, movieDao));
-//            }
-            initData.add(new MultipleItem(MultipleItem.GRID,1,movieDao));
+            initData.add(new MultipleItem(MultipleItem.LIST,3,movieDao));
         }
         return initData;
     }

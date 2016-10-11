@@ -1,19 +1,17 @@
 package com.jiumeng.movieheaven2.adapter;
 
-import android.net.Uri;
 import android.text.TextUtils;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.interfaces.DraweeController;
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.bean.MovieDao;
 import com.jiumeng.movieheaven2.bean.MultipleItem;
+import com.jiumeng.movieheaven2.network.NetWorkApi;
+import com.jiumeng.movieheaven2.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,22 +35,16 @@ public class RecyclerViewBaseAdapter extends BaseMultiItemQuickAdapter<MultipleI
         switch (baseViewHolder.getItemViewType()) {
             case MultipleItem.LIST:
                 MovieDao data = multipleItem.getData();
-                baseViewHolder.setText(R.id.tv_name, data.minName);
-                baseViewHolder.setText(R.id.tv_type, data.category);
-                baseViewHolder.setText(R.id.tv_update, data.updatetime);
-                baseViewHolder.setText(R.id.tv_grade, data.grade);
+                baseViewHolder.setText(R.id.tv_name, data.name);
+                baseViewHolder.setText(R.id.tv_type, "类型："+data.category);
+                baseViewHolder.setText(R.id.tv_update, "更新时间："+data.updatetime);
+                baseViewHolder.setText(R.id.tv_grade, "评分："+data.grade);
                 break;
             case MultipleItem.GRID:
                 MovieDao data2 = multipleItem.getData();
-                SimpleDraweeView imageView = baseViewHolder.getView(R.id.iv_img);
-
-
-                if (data2.jpgList != null) {
-                    if (data2.jpgList.size() > 0) {
-                        Uri uri = Uri.parse(data2.jpgList.get(0));
-                        imageView.setImageURI(uri);
-                    }
-                }
+                ImageView iv_img=baseViewHolder.getView(R.id.iv_img);
+                String url= NetWorkApi.MYHOST+"/image/"+data2.id+".jpg_movieheaven";
+                Glide.with(UIUtils.getContext()).load(url).into(iv_img);
                 baseViewHolder.setText(R.id.tv_name, data2.minName);
                 baseViewHolder.setText(R.id.tv_update, data2.updatetime);
 //                baseViewHolder.setText(R.id.tv_grade, "评分:"+data.grade);

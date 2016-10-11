@@ -5,7 +5,11 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Process;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
+import com.zhy.http.okhttp.OkHttpUtils;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 /**
  * 自定义application 进行全局初始化
@@ -22,7 +26,18 @@ public class MyApplication extends Application {
         context = getApplicationContext();
         mainThreadId = Process.myTid();
         handler = new Handler();
-        Fresco.initialize(this);
+
+        initOkHttpClient();
+    }
+
+    private void initOkHttpClient() {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//                .addInterceptor(new LoggerInterceptor("TAG"))
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                //其他配置
+                .build();
+        OkHttpUtils.initClient(okHttpClient);
     }
 
     public static Context getContext() {

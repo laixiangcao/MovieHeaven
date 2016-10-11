@@ -23,7 +23,7 @@ public class HotestVpFragment extends ImplMultipleLayoutFragment {
     public List<MultipleItem> setMultipeItem(ArrayList<MovieDao> data) {
         List<MultipleItem> initData = new ArrayList<>();
         for (MovieDao movieDao : data) {
-            initData.add(new MultipleItem(MultipleItem.GRID,1,movieDao));
+            initData.add(new MultipleItem(MultipleItem.LIST,3,movieDao));
         }
         return initData;
     }

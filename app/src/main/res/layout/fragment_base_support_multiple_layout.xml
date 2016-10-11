@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
+    <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/wsrl_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -12,7 +12,7 @@
             android:id="@+id/rv_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
 </FrameLayout>
