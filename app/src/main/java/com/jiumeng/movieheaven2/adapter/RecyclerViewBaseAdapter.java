@@ -3,16 +3,14 @@ package com.jiumeng.movieheaven2.adapter;
 import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.entity.MovieEntity;
 import com.jiumeng.movieheaven2.entity.MultipleItemEntity;
-import com.jiumeng.movieheaven2.network.NetWorkApi;
+import com.jiumeng.movieheaven2.utils.MyTextUtils;
 import com.jiumeng.movieheaven2.utils.UIUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,11 +41,9 @@ public class RecyclerViewBaseAdapter extends BaseMultiItemQuickAdapter<MultipleI
             case MultipleItemEntity.GRID:
                 MovieEntity data2 = multipleItem.getData();
                 ImageView iv_img=baseViewHolder.getView(R.id.iv_img);
-                String url= NetWorkApi.MYHOST+"/image/"+data2.id+".jpg_movieheaven";
-                Glide.with(UIUtils.getContext()).load(url).into(iv_img);
+                Glide.with(UIUtils.getContext()).load(MyTextUtils.id2Url(data2.id)).into(iv_img);
                 baseViewHolder.setText(R.id.tv_name, data2.minName);
                 baseViewHolder.setText(R.id.tv_update, data2.updatetime);
-//                baseViewHolder.setText(R.id.tv_grade, "评分:"+data.grade);
                 RatingBar ratingBar = baseViewHolder.getView(R.id.rb_grade);
 
                 if (!TextUtils.isEmpty(data2.grade)) {

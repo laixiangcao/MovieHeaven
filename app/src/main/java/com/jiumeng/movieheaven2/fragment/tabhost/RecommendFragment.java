@@ -72,13 +72,13 @@ public class RecommendFragment extends BaseLoadFragment {
     }
 
 
-    @OnClick({R.id.et_search, R.id.iv_voice_search})
-    public void search(View view) {
-        switch (view.getId()) {
-            case R.id.et_search:
-                Toast.makeText(getContext(), "et_search", Toast.LENGTH_SHORT).show();
-            case R.id.iv_voice_search:
-                Toast.makeText(getContext(), "iv_voice_search", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @OnClick({R.id.et_search, R.id.iv_voice_search})
+//    public void search(View view) {
+//        switch (view.getId()) {
+//            case R.id.et_search:
+//                Toast.makeText(getContext(), "et_search", Toast.LENGTH_SHORT).show();
+//            case R.id.iv_voice_search:
+//                Toast.makeText(getContext(), "iv_voice_search", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }

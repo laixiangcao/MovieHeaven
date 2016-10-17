@@ -4,11 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Process;
-
 import com.zhy.http.okhttp.OkHttpUtils;
-
 import java.util.concurrent.TimeUnit;
-
+import cn.bmob.v3.Bmob;
 import okhttp3.OkHttpClient;
 
 /**
@@ -26,6 +24,9 @@ public class MyApplication extends Application {
         context = getApplicationContext();
         mainThreadId = Process.myTid();
         handler = new Handler();
+
+        //初始化Bmob后端云
+        Bmob.initialize(this, "900c26e77f87f1d7153973028a431d4a");
 
         initOkHttpClient();
     }

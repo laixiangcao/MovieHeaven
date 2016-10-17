@@ -16,7 +16,7 @@ import com.jiumeng.movieheaven2.utils.UIUtils;
  * 未加载 - 加载中 - 加载失败 - 数据为空 - 加载成功--没有网络
  * Created by 7 on 2016/6/15.
  */
-public abstract class LoadingPage extends FrameLayout {
+public abstract class LoadingPage extends FrameLayout implements View.OnClickListener {
 
     private static final int STATE_LOAD_UNDO = 1;// 未加载
     private static final int STATE_LOAD_LOADING = 2;// 正在加载
@@ -73,17 +73,19 @@ public abstract class LoadingPage extends FrameLayout {
             addView(mEmptyPage);
         }
 
-
-        TextView btnAgainLoad= (TextView) findViewById(R.id.button1);
-        btnAgainLoad.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadData();
-            }
-        });
+        //设置加载失败，点击重新加载
+        TextView tv_reload2= (TextView) findViewById(R.id.tv_reload2);
+        TextView tv_reload= (TextView) findViewById(R.id.tv_reload);
+        tv_reload.setOnClickListener(this);
+        tv_reload2.setOnClickListener(this);
 
         //根据当前状态显示适当的布局
         showRightPage();
+    }
+
+    @Override
+    public void onClick(View v) {
+        loadData();
     }
 
     private void showRightPage() {
@@ -129,6 +131,7 @@ public abstract class LoadingPage extends FrameLayout {
         mCurrentState=resultState.getState();
         showRightPage();
     }
+
 
     //枚举
     public enum ResultState {

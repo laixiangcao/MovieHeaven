@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+
 import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.entity.MainTabEntity;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -18,6 +20,7 @@ public class MainActivity extends FragmentActivity implements TabHost.OnTabChang
 
     @BindView(android.R.id.tabhost)
     FragmentTabHost mTabHost;
+
 
     private LayoutInflater mLayoutInflater;
     @Override
@@ -62,6 +65,7 @@ public class MainActivity extends FragmentActivity implements TabHost.OnTabChang
 
     @Override
     public void onTabChanged(String tabId) {
-        //mTabHost标签切换
+
+
     }
 }

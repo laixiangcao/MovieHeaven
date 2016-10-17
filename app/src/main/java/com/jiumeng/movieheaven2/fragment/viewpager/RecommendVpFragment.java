@@ -23,17 +23,5 @@ public class RecommendVpFragment extends Fragment {
 //        return getArguments().getInt("movieType");
 //    }
 //
-//    @Override
-//    public List<MultipleItem> setMultipeItem(ArrayList<MovieDao> data) {
-//        return null;
-//    }
-//
-//    @Override
-//    public List<MultipleItem> setMultipeItem2(ArrayList<ArrayList<MovieDao>> data) {
-//        List<MultipleItem> initData = new ArrayList<>();
-//        for (ArrayList<MovieDao> list : data) {
-//            initData.add(new MultipleItem(MultipleItem.RECOMMEND,1,list));
-//        }
-//        return initData;
-//    }
+
 }

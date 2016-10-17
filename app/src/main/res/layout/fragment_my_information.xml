@@ -6,31 +6,63 @@
     android:background="@color/white_light"
     android:orientation="vertical">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="160dp"
         android:background="@color/green_light">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_gravity="center"
-            android:src="@drawable/icon_favicon"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="2dp" />
+        <TextView
+            android:id="@+id/edit_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:background="@color/colorAccent"
+            android:text="编辑用户"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_14" />
 
-    </FrameLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_favicon"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="未登录"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_16" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_marginLeft="6dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:orientation="vertical">
+
             <LinearLayout
+                android:id="@+id/my_msg"
                 style="@style/option_item_ll">
 
                 <ImageView
@@ -43,8 +75,9 @@
             </LinearLayout>
 
 
-
-            <LinearLayout style="@style/option_item_ll">
+            <LinearLayout
+                android:id="@+id/my_fav"
+                style="@style/option_item_ll">
 
                 <ImageView
                     style="@style/option_item_img"
@@ -56,8 +89,9 @@
             </LinearLayout>
 
 
-
-            <LinearLayout style="@style/option_item_ll">
+            <LinearLayout
+                android:id="@+id/recommend"
+                style="@style/option_item_ll">
 
                 <ImageView
                     style="@style/option_item_img"
@@ -69,8 +103,9 @@
             </LinearLayout>
 
 
-
-            <LinearLayout style="@style/option_item_ll">
+            <LinearLayout
+                android:id="@+id/feedback"
+                style="@style/option_item_ll">
 
                 <ImageView
                     style="@style/option_item_img"
@@ -82,10 +117,12 @@
             </LinearLayout>
 
             <View
-                android:background="@color/list_divider_color"
-                style="@style/list_divider_line"/>
+                style="@style/h_line"
+                android:background="@color/list_divider_color" />
 
-            <LinearLayout style="@style/option_item_ll">
+            <LinearLayout
+                android:id="@+id/setting"
+                style="@style/option_item_ll">
 
                 <ImageView
                     style="@style/option_item_img"
@@ -97,8 +134,6 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-
 
 
 </LinearLayout>

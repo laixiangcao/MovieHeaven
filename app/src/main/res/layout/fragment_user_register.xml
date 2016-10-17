@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/ic_movieheaven" />
+
+        <EditText
+            android:id="@+id/et_userName"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/ic_bg_edit"
+            android:hint="用户名"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:paddingBottom="6dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="6dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_14" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_bg_edit"
+            android:hint="邮箱"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:paddingBottom="6dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="6dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_14" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_bg_edit"
+            android:hint="密码"
+            android:imeOptions="actionGo"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:paddingBottom="6dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="6dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_14" />
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/colorPrimary"
+            android:text="注册"
+            android:textColor="@color/tabhost_bg_clouds"
+            android:textSize="@dimen/text_size_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="使用其他方式登录"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/text_size_18" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="随便看看"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/text_size_18" />
+</RelativeLayout>

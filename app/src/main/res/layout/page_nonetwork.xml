@@ -11,6 +11,7 @@
         android:src="@drawable/page_icon_network" />
 
     <TextView
+        android:id="@+id/tv_reload"
         android:gravity="center"
         android:background="@drawable/sel_retry"
         android:layout_width="wrap_content"

@@ -1,8 +1,12 @@
 package com.jiumeng.movieheaven2.network;
 
 
+import com.jiumeng.movieheaven2.utils.MyTextUtils;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import static android.R.attr.type;
 
 /**
  * 实现请求网络数据的封装
@@ -91,88 +95,40 @@ public class NetWorkApi {
                 }
                 break;
             case MVOIETYPE_HOTTEST:
-                if (page == 1) {
-                    path = HOST + "/html/bikan/";
-                } else {
-                    path = HOST + "/html/bikan/index_" + page + ".html";
-                }
+                path = HOST + MyTextUtils.page2Url("/html/bikan/", page);
                 break;
             case MVOIETYPE_SCENARIO:
-                if (page == 1) {
-                    path = HOST + "/0/";
-                } else {
-                    path = HOST + "/0/index_" + page + ".html";
-                }
+                path = HOST + MyTextUtils.page2Url("/0/", page);
                 break;
             case MVOIETYPE_COMEDY:
-                if (page == 1) {
-                    path = HOST + "/1/";
-                } else {
-                    path = HOST + "/1/index_" + page + ".html";
-                }
+                path = HOST + MyTextUtils.page2Url("/1/", page);
                 break;
             case MVOIETYPE_ACTION:
-                if (page == 1) {
-                    path = HOST + "/2/";
-                } else {
-                    path = HOST + "/2/index_" + page + ".html";
-                }
+                path = HOST + MyTextUtils.page2Url("/2/", page);
                 break;
             case MVOIETYPE_AFFECTION:
-                if (page == 1) {
-                    path = HOST + "/3/";
-                } else {
-                    path = HOST + "/3/index_" + page + ".html";
-                }
+                path = HOST + MyTextUtils.page2Url("/3/", page);
                 break;
             case MVOIETYPE_SCIENCE_FICTION:
-                if (page == 1) {
-                    path = HOST + "/4/";
-                } else {
-                    path = HOST + "/4/index_" + page + ".html";
-                }
+                path = HOST + MyTextUtils.page2Url("/4/", page);
                 break;
             case MVOIETYPE_ANIMATION:
-                if (page == 1) {
-                    path = HOST + "/5/";
-                } else {
-                    path = HOST + "/5/index_" + page + ".html";
-                }
+                path = HOST + MyTextUtils.page2Url("/5/", page);
                 break;
             case MVOIETYPE_SUSPENSE:
-                if (page == 1) {
-                    path = HOST + "/6/";
-                } else {
-                    path = HOST + "/6/index_" + page + ".html";
-                }
+                path = HOST + MyTextUtils.page2Url("/6/", page);
                 break;
             case MVOIETYPE_PANIC:
-                if (page == 1) {
-                    path = HOST + "/7/";
-                } else {
-                    path = HOST + "/7/index_" + page + ".html";
-                }
+                path = HOST + MyTextUtils.page2Url("/7/", page);
                 break;
             case MVOIETYPE_WAR:
-                if (page == 1) {
-                    path = HOST + "/14/";
-                } else {
-                    path = HOST + "/14/index_" + page + ".html";
-                }
+                path = HOST + MyTextUtils.page2Url("/14/", page);
                 break;
             case MVOIETYPE_CRIME:
-                if (page == 1) {
-                    path = HOST + "/15/";
-                } else {
-                    path = HOST + "/15/index_" + page + ".html";
-                }
+                path = HOST + MyTextUtils.page2Url("/5/", page);
                 break;
             case MVOIETYPE_TERROR:
-                if (page == 1) {
-                    path = HOST + "/8/";
-                } else {
-                    path = HOST + "/8/index_" + page + ".html";
-                }
+                path = HOST + MyTextUtils.page2Url("/8/", page);
                 break;
             case MVOIETYPE_CINEMAMOVIE:
                 path = MYHOST + "/CinemaMovie/CinemaMovieList" + page + ".json";
@@ -190,8 +146,8 @@ public class NetWorkApi {
             HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
             conn.setReadTimeout(3000);
             conn.setConnectTimeout(3000);
-            return conn.getResponseCode()==200;
-        }catch (Exception e){
+            return conn.getResponseCode() == 200;
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
