@@ -15,67 +15,71 @@ import static android.R.attr.type;
  */
 public class NetWorkApi {
 
-
+    /**
+     * 经典电影类型
+     */
+    public static final int MOVIETYPE_CLASSICS = 16;
     /**
      * 影院电影类型
      */
-    public static final int MVOIETYPE_CINEMAMOVIE = 14;
+    public static final int MOVIETYPE_CINEMAMOVIE = 14;
     /**
      * 最新电影类型
      */
-    public static final int MVOIETYPE_NEWEST = 15;
+    public static final int MOVIETYPE_NEWEST = 15;
     /**
      * 最热电影类型
      */
-    public static final int MVOIETYPE_HOTTEST = 2;
+    public static final int MOVIETYPE_HOTTEST = 2;
     /**
      * 剧情
      */
-    public static final int MVOIETYPE_SCENARIO = 3;
+    public static final int MOVIETYPE_SCENARIO = 3;
     /**
      * 喜剧
      */
-    public static final int MVOIETYPE_COMEDY = 4;
+    public static final int MOVIETYPE_COMEDY = 4;
     /**
      * 动作
      */
-    public static final int MVOIETYPE_ACTION = 5;
+    public static final int MOVIETYPE_ACTION = 5;
     /**
      * 爱情
      */
-    public static final int MVOIETYPE_AFFECTION = 6;
+    public static final int MOVIETYPE_AFFECTION = 6;
     /**
      * 科幻
      */
-    public static final int MVOIETYPE_SCIENCE_FICTION = 7;
+    public static final int MOVIETYPE_SCIENCE_FICTION = 7;
     /**
      * 动画
      */
-    public static final int MVOIETYPE_ANIMATION = 8;
+    public static final int MOVIETYPE_ANIMATION = 8;
     /**
      * 悬疑
      */
-    public static final int MVOIETYPE_SUSPENSE = 9;
+    public static final int MOVIETYPE_SUSPENSE = 9;
     /**
      * 惊悚
      */
-    public static final int MVOIETYPE_PANIC = 10;
+    public static final int MOVIETYPE_PANIC = 10;
     /**
      * 战争
      */
-    public static final int MVOIETYPE_WAR = 11;
+    public static final int MOVIETYPE_WAR = 11;
     /**
      * 犯罪
      */
-    public static final int MVOIETYPE_CRIME = 12;
+    public static final int MOVIETYPE_CRIME = 12;
     /**
      * 恐怖
      */
-    public static final int MVOIETYPE_TERROR = 13;
+    public static final int MOVIETYPE_TERROR = 13;
 
 
     public final static String MYHOST = "http://oaydggmwi.bkt.clouddn.com";//主连接
     public final static String HOST = "http://www.dy2018.com";//主连接
+    public final static String APK_DOWNLOAD = MYHOST + "/com.jiumeng.movieheaven.apk";
 
     /**
      * 获取指定类型和指定页数的电影集合
@@ -87,50 +91,53 @@ public class NetWorkApi {
     public static void getPageInfoFromNet(int catalog, int page, Object tag, MyStringCallback handler) {
         String path = "";
         switch (catalog) {
-            case MVOIETYPE_NEWEST:
+            case MOVIETYPE_NEWEST:
                 if (page == 1) {
                     path = HOST + "/html/gndy/dyzz/index.html";
                 } else {
                     path = HOST + "/html/gndy/dyzz/index_" + page + ".html";
                 }
                 break;
-            case MVOIETYPE_HOTTEST:
+            case MOVIETYPE_HOTTEST:
                 path = HOST + MyTextUtils.page2Url("/html/bikan/", page);
                 break;
-            case MVOIETYPE_SCENARIO:
+            case MOVIETYPE_CLASSICS:
+                path = HOST + MyTextUtils.page2Url("/html/gndy/jddyy/", page);
+                break;
+            case MOVIETYPE_SCENARIO:
                 path = HOST + MyTextUtils.page2Url("/0/", page);
                 break;
-            case MVOIETYPE_COMEDY:
+            case MOVIETYPE_COMEDY:
                 path = HOST + MyTextUtils.page2Url("/1/", page);
                 break;
-            case MVOIETYPE_ACTION:
+            case MOVIETYPE_ACTION:
                 path = HOST + MyTextUtils.page2Url("/2/", page);
                 break;
-            case MVOIETYPE_AFFECTION:
+            case MOVIETYPE_AFFECTION:
                 path = HOST + MyTextUtils.page2Url("/3/", page);
                 break;
-            case MVOIETYPE_SCIENCE_FICTION:
+            case MOVIETYPE_SCIENCE_FICTION:
                 path = HOST + MyTextUtils.page2Url("/4/", page);
                 break;
-            case MVOIETYPE_ANIMATION:
+            case MOVIETYPE_ANIMATION:
                 path = HOST + MyTextUtils.page2Url("/5/", page);
                 break;
-            case MVOIETYPE_SUSPENSE:
+            case MOVIETYPE_SUSPENSE:
                 path = HOST + MyTextUtils.page2Url("/6/", page);
                 break;
-            case MVOIETYPE_PANIC:
+            case MOVIETYPE_PANIC:
                 path = HOST + MyTextUtils.page2Url("/7/", page);
                 break;
-            case MVOIETYPE_WAR:
+            case MOVIETYPE_WAR:
                 path = HOST + MyTextUtils.page2Url("/14/", page);
                 break;
-            case MVOIETYPE_CRIME:
+            case MOVIETYPE_CRIME:
                 path = HOST + MyTextUtils.page2Url("/5/", page);
                 break;
-            case MVOIETYPE_TERROR:
+            case MOVIETYPE_TERROR:
                 path = HOST + MyTextUtils.page2Url("/8/", page);
                 break;
-            case MVOIETYPE_CINEMAMOVIE:
+            case MOVIETYPE_CINEMAMOVIE:
                 path = MYHOST + "/CinemaMovie/CinemaMovieList" + page + ".json";
                 break;
         }

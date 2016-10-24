@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.Toast;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.jiumeng.movieheaven2.R;
+import com.jiumeng.movieheaven2.activity.BaseActivity;
 import com.jiumeng.movieheaven2.activity.BlankActivity;
 import com.jiumeng.movieheaven2.adapter.RecyclerViewBaseAdapter;
 import com.jiumeng.movieheaven2.entity.MovieEntity;
@@ -20,7 +20,6 @@ import com.jiumeng.movieheaven2.provider.DataTools;
 import com.jiumeng.movieheaven2.provider.ProcessData;
 import com.jiumeng.movieheaven2.utils.PrefUtils;
 import com.jiumeng.movieheaven2.views.LoadingPage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +65,7 @@ public abstract class ImplMultipleLayoutFragment extends BaseMultipleLayoutFragm
                 bundle.putSerializable("movie", item.getData());
                 bundle.putInt("fragmentType", BlankActivity.FRAGMENT_TYPE_MOVIEDETAIL);
                 intent.putExtras(bundle);
-                startActivity(intent);
+                getContext().startActivity(intent);
             }
         });
         mRecyclerView.setAdapter(mAdapter);

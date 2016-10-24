@@ -19,12 +19,12 @@ public class ClassifyFragment extends BaseViewPagerFragment {
     protected List<ViewPageInfoEntity> onSetupTabAdapter() {
         String[] strings = getContext().getResources().getStringArray(R.array.classify_indicator_names);
         ArrayList<ViewPageInfoEntity> viewPageInfos = new ArrayList<>();
-        viewPageInfos.add(new ViewPageInfoEntity(strings[0], "action", ClassifyVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_ACTION)));
-        viewPageInfos.add(new ViewPageInfoEntity(strings[1], "terror", ClassifyVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_TERROR)));
-        viewPageInfos.add(new ViewPageInfoEntity(strings[2], "science_fiction", ClassifyVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_SCIENCE_FICTION)));
-        viewPageInfos.add(new ViewPageInfoEntity(strings[3], "comedy", ClassifyVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_COMEDY)));
-        viewPageInfos.add(new ViewPageInfoEntity(strings[4], "scenario", ClassifyVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_SCENARIO)));
-        viewPageInfos.add(new ViewPageInfoEntity(strings[5], "affection", ClassifyVpFragment.class, getBundle(NetWorkApi.MVOIETYPE_AFFECTION)));
+        viewPageInfos.add(new ViewPageInfoEntity(strings[0], "action", ClassifyVpFragment.class, getBundle(NetWorkApi.MOVIETYPE_ACTION)));
+        viewPageInfos.add(new ViewPageInfoEntity(strings[1], "terror", ClassifyVpFragment.class, getBundle(NetWorkApi.MOVIETYPE_TERROR)));
+        viewPageInfos.add(new ViewPageInfoEntity(strings[2], "science_fiction", ClassifyVpFragment.class, getBundle(NetWorkApi.MOVIETYPE_SCIENCE_FICTION)));
+        viewPageInfos.add(new ViewPageInfoEntity(strings[3], "comedy", ClassifyVpFragment.class, getBundle(NetWorkApi.MOVIETYPE_COMEDY)));
+        viewPageInfos.add(new ViewPageInfoEntity(strings[4], "scenario", ClassifyVpFragment.class, getBundle(NetWorkApi.MOVIETYPE_SCENARIO)));
+        viewPageInfos.add(new ViewPageInfoEntity(strings[5], "affection", ClassifyVpFragment.class, getBundle(NetWorkApi.MOVIETYPE_AFFECTION)));
         return viewPageInfos;
     }
 }

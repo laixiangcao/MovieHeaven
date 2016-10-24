@@ -295,13 +295,11 @@ public class ProcessData {
                     movie.minName = "";
                 }
 
-                // 获取类型
-                int index13 = contents.indexOf("类型");
+
+                int index13 = contents.indexOf("类别");
+
                 if (index13 == -1) {
                     index13 = contents.indexOf("分类");
-                }
-                if (index13 == -1) {
-                    index13 = contents.indexOf("类别");
                 }
                 int index14 = -1;
                 if (index13 != -1) {
@@ -323,4 +321,31 @@ public class ProcessData {
         }
         return movie;
     }
+
+
+    public static ArrayList<ArrayList<String>> getHomeUrl(String text) {
+        ArrayList<ArrayList<String>> homeUrlList = new ArrayList<>();
+        String substring = null;
+        int idx1 = text.indexOf("新片精品");
+        int idx2 = text.indexOf("<!--电视剧-->");
+        try {
+            substring = text.substring(idx1, idx2);
+        } catch (Exception e) {
+            return null;
+        }
+        String[] subUrls = substring.split("title_all");
+
+        for (String subString : subUrls) {
+            String teg="(href='/).*html";
+            Pattern p = Pattern.compile(teg);
+            Matcher m = p.matcher(subString);
+            ArrayList<String> arrayList = new ArrayList<>();
+            while (m.find()) {
+                arrayList.add("http://www.dy2018.com" + m.group().replace("href='",""));
+            }
+            homeUrlList.add(arrayList);
+        }
+        return homeUrlList;
+    }
+
 }

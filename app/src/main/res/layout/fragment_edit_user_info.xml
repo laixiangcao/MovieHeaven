@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.jiumeng.movieheaven2.views.CustomerScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/list_item_background"
+    android:orientation="vertical"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            style="@style/h_line"
+            android:layout_marginTop="20dip" />
+
+        <RelativeLayout
+            android:id="@+id/alter_avatar"
+            style="@style/option_item_rl"
+            android:layout_marginLeft="8dp"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                style="@style/option_item_text_parent"
+                android:text="更换头像"
+                android:textColor="#333333"
+                android:textSize="@dimen/text_size_18" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_avatar"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_favicon"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp" />
+        </RelativeLayout>
+
+        <View style="@style/h_line" />
+
+        <RelativeLayout
+            android:id="@+id/alter_nick"
+            style="@style/option_item_rl"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                style="@style/option_item_text_parent"
+                android:text="更改昵称"
+                android:textColor="#333333"
+                android:textSize="@dimen/text_size_18" />
+
+            <TextView
+                android:id="@+id/tv_nick"
+                style="@style/option_item_text_parent"
+                android:layout_alignParentRight="true"
+                android:textColor="#333333"
+                android:textSize="@dimen/text_size_16" />
+        </RelativeLayout>
+
+        <View style="@style/h_line" />
+
+        <RelativeLayout
+            android:id="@+id/bound_email"
+            style="@style/option_item_rl"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                style="@style/option_item_text_parent"
+                android:text="绑定邮箱"
+                android:textColor="#333333"
+                android:textSize="@dimen/text_size_18" />
+            <TextView
+                android:id="@+id/tv_email"
+                style="@style/option_item_text_parent"
+                android:layout_alignParentRight="true"
+                android:textColor="#333333"
+                android:textSize="@dimen/text_size_16" />
+        </RelativeLayout>
+
+        <View style="@style/h_line" />
+
+        <RelativeLayout
+            android:id="@+id/bound_phone"
+            style="@style/option_item_rl"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                style="@style/option_item_text_parent"
+                android:text="绑定手机"
+                android:textColor="#333333"
+                android:textSize="@dimen/text_size_18" />
+            <TextView
+                android:id="@+id/tv_phone"
+                style="@style/option_item_text_parent"
+                android:layout_alignParentRight="true"
+                android:textColor="#333333"
+                android:textSize="@dimen/text_size_14" />
+        </RelativeLayout>
+
+        <View style="@style/h_line" />
+
+        <LinearLayout
+            android:id="@+id/alter_pwd"
+            style="@style/option_item_rl"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                style="@style/option_item_text_parent"
+                android:text="修改密码"
+                android:textColor="#333333"
+                android:textSize="@dimen/text_size_18" />
+        </LinearLayout>
+
+        <View style="@style/h_line" />
+
+        <LinearLayout
+            android:id="@+id/logout_user"
+            style="@style/option_item_rl"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                style="@style/option_item_text_parent"
+                android:text="注销用户"
+                android:textColor="@color/red_light"
+                android:textSize="@dimen/text_size_18" />
+        </LinearLayout>
+
+
+        <View style="@style/h_line" />
+    </LinearLayout>
+</com.jiumeng.movieheaven2.views.CustomerScrollView>

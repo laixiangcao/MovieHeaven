@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Created by jiumeng on 2016/9/27.
  */
 public class MultipleItemEntity implements MultiItemEntity, Serializable {
-    //    private static final long SerializVersion=1L;
+    private static final long serialVersionUID = 2L;
     public static final int LIST = 0;
     public static final int GRID = 1;
     public static final int RECOMMEND = 2;
@@ -31,9 +31,8 @@ public class MultipleItemEntity implements MultiItemEntity, Serializable {
         this.data = data;
     }
 
-    public MultipleItemEntity(int itemType, int spanSize, ArrayList<MovieEntity> dataList) {
+    public MultipleItemEntity(int itemType , ArrayList<MovieEntity> dataList) {
         this.itemType = itemType;
-        this.spanSize = spanSize;
         this.dataList = dataList;
     }
 

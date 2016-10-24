@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,13 +7,20 @@
 
 
     <android.support.v4.widget.NestedScrollView
+        android:layout_marginBottom="40dp"
         android:id="@+id/nsv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scrollbars="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_scrollFlags="scroll|enterAlways">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -26,17 +32,14 @@
                 <ImageView
                     android:id="@+id/iv_img"
                     android:layout_width="108dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="148dp"
+                    android:layout_margin="16dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/default_movie_image" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
@@ -325,15 +328,21 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/default_movie_image2"
                 android:scaleType="fitXY" />
+
+            <com.jiumeng.movieheaven2.comment.CommentsView
+                android:id="@+id/lay_detail_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
 
-
     <LinearLayout
+        android:id="@+id/lay_option"
+        app:layout_anchor="@id/nsv"
+        app:layout_anchorGravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
@@ -341,10 +350,11 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingLeft="8dp"
-        app:layout_behavior="com.jiumeng.movieheaven2.views.FloatingAutoHideDownBehavior"
+        app:layout_behavior="com.jiumeng.movieheaven2.views.FloatingAutoHideDownBehavior2"
         app:layout_scrollFlags="scroll|enterAlways">
 
         <EditText
+            android:id="@+id/et_comment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -392,5 +402,13 @@
             android:paddingRight="16dp"
             android:src="@drawable/download_64px" />
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/list_divider_color"
+        app:layout_anchor="@id/lay_option"
+        app:layout_anchorGravity="top"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_scrollFlags="scroll|enterAlways" />
 
 </android.support.design.widget.CoordinatorLayout>

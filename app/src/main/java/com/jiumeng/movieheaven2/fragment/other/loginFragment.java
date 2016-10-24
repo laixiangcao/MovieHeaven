@@ -6,21 +6,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.jiumeng.movieheaven2.R;
+import com.jiumeng.movieheaven2.activity.BaseActivity;
 import com.jiumeng.movieheaven2.activity.BlankActivity;
+import com.jiumeng.movieheaven2.engine.UserManager;
+import com.jiumeng.movieheaven2.entity.UserEntity;
+import com.jiumeng.movieheaven2.utils.UIUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.LogInListener;
 
 /**
  * Created by jiumeng on 2016/10/16.
  */
-public class loginFragment extends Fragment {
+public class LoginFragment extends Fragment {
     @BindView(R.id.et_userName)
     EditText etUserName;
     @BindView(R.id.et_password)
@@ -38,6 +42,7 @@ public class loginFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
+                loginUser();
                 break;
             case R.id.tv_register:
                 BlankActivity activity = (BlankActivity) getActivity();
@@ -46,5 +51,21 @@ public class loginFragment extends Fragment {
             case R.id.tv_home:
                 break;
         }
+    }
+
+    private void loginUser() {
+        UserManager.getInstance().login(etUserName.getText().toString(), etPassword.getText().toString(), new LogInListener<UserEntity>() {
+            @Override
+            public void done(UserEntity user, BmobException e) {
+                if (user != null) {
+                    UIUtils.showToast("登入成功");
+                    UserManager.getInstance().setLoginStatus(true);
+                    getActivity().setResult(0);
+                    BaseActivity.getForegroundActivity().finish();
+                }else {
+                    UIUtils.showToast(e.getLocalizedMessage());
+                }
+            }
+        });
     }
 }

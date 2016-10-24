@@ -6,21 +6,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.jiumeng.movieheaven2.R;
-import com.jiumeng.movieheaven2.activity.BlankActivity;
+import com.jiumeng.movieheaven2.activity.BaseActivity;
+import com.jiumeng.movieheaven2.engine.UserManager;
+import com.jiumeng.movieheaven2.entity.UserEntity;
+import com.jiumeng.movieheaven2.utils.UIUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  * Created by jiumeng on 2016/10/16.
  */
-public class registerFragment extends Fragment {
+public class RegisterFragment extends Fragment {
     @BindView(R.id.et_userName)
     EditText etUserName;
     @BindView(R.id.et_email)
@@ -40,9 +43,29 @@ public class registerFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_register:
+                registerUser();
                 break;
             case R.id.tv_home:
                 break;
         }
+    }
+
+    private void registerUser() {
+        String userName = etUserName.getText().toString();
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+        UserManager.getInstance().register(userName, email, password, new SaveListener<UserEntity>() {
+            @Override
+            public void done(UserEntity user, BmobException e) {
+                if (e == null) {
+                    UIUtils.showToast("注册成功");
+                    UserManager.getInstance().autoLogon();
+                    BaseActivity.getForegroundActivity().finish();
+                } else {
+                    UIUtils.showToast(e.getLocalizedMessage());
+                }
+            }
+        });
+
     }
 }

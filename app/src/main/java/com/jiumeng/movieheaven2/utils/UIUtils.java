@@ -1,6 +1,8 @@
 package com.jiumeng.movieheaven2.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
@@ -107,16 +109,16 @@ public class UIUtils {
         }
     }
 
-    /**
-     * 隐藏输入法
-     */
-    public static void hideSoftKeyboard(View view) {
-        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        boolean isOpen = imm.isActive();//isOpen若返回true，则表示输入法打开
-        if (isOpen) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
-        }
-    }
+//    /**
+//     * 隐藏输入法
+//     */
+//    public static void hideSoftKeyboard(View view) {
+//        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//        boolean isOpen = imm.isActive();//isOpen若返回true，则表示输入法打开
+//        if (isOpen) {
+//            imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
+//        }
+//    }
 
     /**
      * @return 0:没有网络 1：移动网络 2：wifi网络
@@ -180,6 +182,34 @@ public class UIUtils {
 
     public static void showToast(String content) {
         Toast.makeText(getContext(), content, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void hideSoftKeyboard(View view) {
+        if (view == null) return;
+        View mFocusView = view;
+
+        Context context = view.getContext();
+        if (context != null && context instanceof Activity) {
+            Activity activity = ((Activity) context);
+            mFocusView = activity.getCurrentFocus();
+        }
+        if (mFocusView == null) return;
+        mFocusView.clearFocus();
+        InputMethodManager manager = (InputMethodManager) mFocusView.getContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        manager.hideSoftInputFromWindow(mFocusView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    public static String getVersionName() {
+        try {
+            return UIUtils
+                    .getContext()
+                    .getPackageManager()
+                    .getPackageInfo(UIUtils.getContext().getPackageName(), 0)
+                    .versionName;
+        } catch (PackageManager.NameNotFoundException ex) {
+            return "undefined version name";
+        }
     }
 
 }

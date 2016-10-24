@@ -10,12 +10,13 @@ import android.net.Uri;
 import android.os.Environment;
 import android.widget.Toast;
 
+import com.jiumeng.movieheaven2.activity.BaseActivity;
 import com.jiumeng.movieheaven2.network.NetWorkApi;
 import com.jiumeng.movieheaven2.utils.MyTextUtils;
 import com.jiumeng.movieheaven2.utils.PrefUtils;
 import com.jiumeng.movieheaven2.utils.UIUtils;
+
 import java.io.File;
-import java.util.List;
 
 /**
  * Created by jiumeng on 2016/10/15.
@@ -32,26 +33,24 @@ public class DownloadManager {
 
     /**
      * 启动迅雷下载
+     *
      * @param url 需要下载的链接
      */
     public void startXunlei(String url) {
-        if (MyTextUtils.isEmpty(url)){
+        if (MyTextUtils.isEmpty(url)) {
             UIUtils.showToast("下载链接不存在");
-            return ;
+            return;
         }
-//        //检测是否已安装迅雷软件
-//        if (isInstallXunlei()) {
-//            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//            intent.addCategory("android.intent.category.DEFAULT");
-//            mContext.startActivity(intent);
-//        } else {
-//            //显示对话框 通知用户是否下载迅雷软件
-//            showInstallDia();
-//        }
-
+        //检测是否已安装迅雷软件
+        if (isInstallXunlei()) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             intent.addCategory("android.intent.category.DEFAULT");
-            mContext.startActivity(intent);
+            UIUtils.getContext().startActivity(intent);
+        } else {
+            //显示对话框 通知用户是否下载迅雷软件
+            showInstallDia();
+        }
+
     }
 
     /**
@@ -70,7 +69,7 @@ public class DownloadManager {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(Uri.fromFile(file),
                     "application/vnd.android.package-archive");
-            mContext.startActivity(intent);
+            UIUtils.getContext().startActivity(intent);
 
             //情况二：从未下载过
             // 调用系统的下载管理器 下载并安装
@@ -78,7 +77,7 @@ public class DownloadManager {
             //获取系统的下载管理器
             android.app.DownloadManager downloadManager = (android.app.DownloadManager) UIUtils.getContext().getSystemService(Context.DOWNLOAD_SERVICE);
             //设置下载连接
-            Uri uri = Uri.parse(NetWorkApi.MYHOST+"/xunlei.apk");
+            Uri uri = Uri.parse(NetWorkApi.MYHOST + "/xunlei.apk");
 
             //请求下载
             android.app.DownloadManager.Request request = new android.app.DownloadManager.Request(uri);
@@ -128,23 +127,23 @@ public class DownloadManager {
      */
     private boolean isInstallXunlei() {
         String pkgName = "com.xunlei.downloadprovider";
-//        PackageInfo packageInfo;
-//        try {
-//            packageInfo = UIUtils.getContext().getPackageManager().getPackageInfo(pkgName, 0);
-//        } catch (PackageManager.NameNotFoundException e) {
-//            packageInfo = null;
-//            e.printStackTrace();
-//        }
-//        return packageInfo != null;
-
-        final PackageManager packageManager = mContext.getPackageManager();
-        // 获取所有已安装程序的包信息
-        List<PackageInfo> pinfo = packageManager.getInstalledPackages(0);
-        for ( int i = 0; i < pinfo.size(); i++ )
-        {
-            if(pinfo.get(i).packageName.equalsIgnoreCase(pkgName))
-                return true;
+        PackageInfo packageInfo;
+        try {
+            packageInfo = UIUtils.getContext().getPackageManager().getPackageInfo(pkgName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            packageInfo = null;
+            e.printStackTrace();
         }
-        return false;
+        return packageInfo != null;
+
+        //方法二：判断软件是否安装
+//        final PackageManager packageManager = mContext.getPackageManager();
+//        // 获取所有已安装程序的包信息
+//        List<PackageInfo> pinfo = packageManager.getInstalledPackages(0);
+//        for (int i = 0; i < pinfo.size(); i++) {
+//            if (pinfo.get(i).packageName.equalsIgnoreCase(pkgName))
+//                return true;
+//        }
+//        return false;
     }
 }

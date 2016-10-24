@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by jiumeng on 2016/4/13.
  */
 public class MovieEntity implements Serializable {
-
+    private static final long serialVersionUID = 2L;
     //热门&最新：    url id name minNmae  日期 评分 类型 年代  国家  语言 字幕 上映日期
     //分类：         url id name minName  日期 评分 类型 导演  主演
     public String url;//电影连接
@@ -28,5 +28,30 @@ public class MovieEntity implements Serializable {
     public String grade;//ibdm评分/豆辩评分
     public String director;//导演
     public String starring;//主演
+
+    @Override
+    public String toString() {
+        return "MovieEntity{" +
+                "url='" + url + '\'' +
+                ", id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", minName='" + minName + '\'' +
+                ", updatetime='" + updatetime + '\'' +
+                ", jpgList=" + jpgList +
+                ", downlist=" + downlist +
+                ", introduction='" + introduction + '\'' +
+                ", country='" + country + '\'' +
+                ", subtitle='" + subtitle + '\'' +
+                ", language='" + language + '\'' +
+                ", category='" + category + '\'' +
+                ", years='" + years + '\'' +
+                ", play_time='" + play_time + '\'' +
+                ", grade='" + grade + '\'' +
+                ", director='" + director + '\'' +
+                ", starring='" + starring + '\'' +
+                ", filesize='" + filesize + '\'' +
+                '}';
+    }
+
     public String filesize;//文件大小
 }

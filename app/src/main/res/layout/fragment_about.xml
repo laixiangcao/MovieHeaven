@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_light"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_version_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_5"
+            android:textColor="@color/main_black"
+            android:textSize="@dimen/text_size_16" />
+
+        <View
+            style="@style/h_line"
+            android:layout_marginTop="10dp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_check_update"
+            style="@style/option_item_rl"
+            android:visibility="visible">
+
+            <TextView
+                style="@style/option_item_text_parent"
+                android:text="@string/update"
+                android:textColor="@color/main_black"
+                android:textSize="@dimen/text_size_16"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:id="@+id/pb_loading"
+                    style="@style/loading"
+                    android:layout_width="18dip"
+                    android:layout_height="18dip"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_14"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            style="@style/h_line"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:id="@+id/rl_grade"
+            style="@style/option_item_rl">
+
+            <TextView
+                style="@style/option_item_text_parent"
+                android:text="@string/grade"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16" />
+        </RelativeLayout>
+
+        <View style="@style/h_line" />
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_launcher"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="20dip"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dip">
+
+        <TextView
+            android:id="@+id/tv_oscsite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:text="@string/oscsite"
+            android:textColor="?android:textColorLink" />
+
+
+        <TextView
+            android:id="@+id/tv_knowmore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/knowmore"
+            android:textColor="?android:textColorLink" />
+    </LinearLayout>
+
+
+    <TextView
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/copyright"
+        android:textColor="@color/grey_light" />
+
+</LinearLayout>

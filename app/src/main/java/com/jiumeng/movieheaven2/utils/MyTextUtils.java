@@ -24,7 +24,15 @@ public class MyTextUtils {
         return path;
     }
 
+    /**
+     * @param text
+     * @return true 文本为空 false 文本不为空
+     */
     public static boolean isEmpty(String text) {
-        return text != null && text.equals("") && text.length() > 0;
+        return !(text != null && !text.equals("") && text.length() > 0);
     }
+
+//    public static boolean isValid(String text) {
+//        return text != null && text.equals("") && text.length() > 0;
+//    }
 }

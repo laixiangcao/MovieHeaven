@@ -1,20 +1,29 @@
 package com.jiumeng.movieheaven2.fragment.viewpager;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.jiumeng.movieheaven2.R;
+import com.jiumeng.movieheaven2.entity.MovieEntity;
+import com.jiumeng.movieheaven2.entity.MultipleItemEntity;
+import com.jiumeng.movieheaven2.fragment.impl.ImplMultipleLayoutFragment;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * viewpager页面----经典频道
  * Created by jiumeng on 2016/9/27.
  */
-public class ClassicsVpFragment extends Fragment {
+public class ClassicsVpFragment extends ImplMultipleLayoutFragment {
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_my_information,null);
+    protected int getMovieType() {
+        return getArguments().getInt("movieType");
+    }
+
+    @Override
+    public List<MultipleItemEntity> setMultipeItem(ArrayList<MovieEntity> data) {
+        List<MultipleItemEntity> initData = new ArrayList<>();
+        for (MovieEntity movieDao : data) {
+            initData.add(new MultipleItemEntity(MultipleItemEntity.LIST,3,movieDao));
+        }
+        return initData;
     }
 }

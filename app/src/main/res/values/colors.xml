@@ -7,6 +7,7 @@
 
     <!-- 常用颜色值 -->
     <color name="white">#FFFFFF</color>
+    <color name="red_light">#88FF0000</color>
 
     <color name="black">#000000</color>
     <color name="grey">#9E9E9E</color>
@@ -40,4 +41,7 @@
 
     <color name="day_layout_bg_normal">#f6f6f6</color>
     <color name="day_layout_bg_pressed">#dfdfdf</color>
+
+    <color name="main_link_text_color">#ffbedfff</color>
+    <color name="timeline_clickable_text_highlighted_background">#ffbedfff</color>
 </resources>

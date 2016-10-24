@@ -9,10 +9,16 @@ import com.jiumeng.movieheaven2.adapter.RecyclerViewBaseAdapter;
 import com.jiumeng.movieheaven2.entity.MovieEntity;
 import com.jiumeng.movieheaven2.entity.MultipleItemEntity;
 import com.jiumeng.movieheaven2.fragment.base.BaseMultipleLayoutFragment;
+import com.jiumeng.movieheaven2.network.MyStringCallback;
+import com.jiumeng.movieheaven2.network.NetWorkApi;
+import com.jiumeng.movieheaven2.provider.ProcessData;
 import com.jiumeng.movieheaven2.utils.UIUtils;
+import com.jiumeng.movieheaven2.views.LoadingPage;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
 
 /**
  * Created by jiumeng on 2016/10/4.
@@ -22,8 +28,7 @@ public abstract class Impl2MultipleLayoutFragment extends BaseMultipleLayoutFrag
 
     private RecyclerViewBaseAdapter mAdapter;
     private List<MultipleItemEntity> initData;
-    private ArrayList<MovieEntity> datalist=new ArrayList<>();
-    private ArrayList<ArrayList<MovieEntity>> initDataList;
+    private ArrayList<ArrayList<MovieEntity>> data;
 
 
     @Override
@@ -31,13 +36,6 @@ public abstract class Impl2MultipleLayoutFragment extends BaseMultipleLayoutFrag
         mAdapter = new RecyclerViewBaseAdapter(initData);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setHasFixedSize(true);//如果确定每个item的内容不会改变RecyclerView的大小，设置这个选项可以提高性能
-        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
-            @Override
-            public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                MultipleItemEntity item = (MultipleItemEntity) baseQuickAdapter.getData().get(i);
-                UIUtils.showToast(item.getData().minName);
-            }
-        });
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -45,7 +43,9 @@ public abstract class Impl2MultipleLayoutFragment extends BaseMultipleLayoutFrag
     protected abstract int getMovieType();
 
     @Override
-    public abstract List<MultipleItemEntity> setMultipeItem(ArrayList<MovieEntity> data);
+    public List<MultipleItemEntity> setMultipeItem(ArrayList<MovieEntity> data) {
+        return null;
+    }
 
     public abstract List<MultipleItemEntity> setMultipeItem2(ArrayList<ArrayList<MovieEntity>> data);
 
@@ -55,12 +55,55 @@ public abstract class Impl2MultipleLayoutFragment extends BaseMultipleLayoutFrag
 
     @Override
     protected void initPageData(final boolean isFirstLoad) {
-        initDataList = new ArrayList<>();
+        NetWorkApi.getMovieDetailInfo(NetWorkApi.HOST, this, new MyStringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                UIUtils.showToast(e.getLocalizedMessage());
+                loadDataComplete(LoadingPage.ResultState.STATE_ERROR);
+            }
 
+            @Override
+            public void onResponse(String response, int id) {
+                ArrayList<ArrayList<String>> homeUrl = ProcessData.getHomeUrl(response);
+                if (homeUrl != null) {
+                    data = new ArrayList<>();
+                    for (ArrayList<String> urlList : homeUrl) {
+                        setSubRecommend(urlList);
+                    }
+                }
+
+
+            }
+        });
     }
 
+    private void setSubRecommend(final ArrayList<String> urlList) {
+        final ArrayList<MovieEntity> movieList = new ArrayList<>();
+        for (final String url : urlList) {
+            NetWorkApi.getMovieDetailInfo(url, this, new MyStringCallback() {
+                @Override
+                public void onError(Call call, Exception e, int id) {
+                    UIUtils.showToast(e.getLocalizedMessage());
+                }
 
+                @Override
+                public void onResponse(String response, int id) {
+                    MovieEntity movie = new MovieEntity();
+                    movie.url = url;
+                    movie = ProcessData.parseMovieDetails(response, movie, true);
+                    movieList.add(movie);
+                    if (movieList.size()==urlList.size()){
+                        data.add(movieList);
+                        if (data.size()==4){
+                            initData= setMultipeItem2(data);
+                            loadDataComplete(LoadingPage.ResultState.STATE_SUCCESS);
+                        }
+                    }
+                }
+            });
+        }
 
+    }
 
     @Override
     public void onRefresh() {

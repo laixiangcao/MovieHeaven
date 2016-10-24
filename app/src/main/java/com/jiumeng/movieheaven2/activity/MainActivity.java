@@ -1,8 +1,7 @@
 package com.jiumeng.movieheaven2.activity;
 
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,37 +9,46 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.jiumeng.movieheaven2.R;
+import com.jiumeng.movieheaven2.engine.UserManager;
 import com.jiumeng.movieheaven2.entity.MainTabEntity;
+import com.jiumeng.movieheaven2.utils.UIUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
-public class MainActivity extends FragmentActivity implements TabHost.OnTabChangeListener {
+public class MainActivity extends BaseActivity implements TabHost.OnTabChangeListener {
 
     @BindView(android.R.id.tabhost)
     FragmentTabHost mTabHost;
 
-
-    private LayoutInflater mLayoutInflater;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        initView();
+    protected int getLayoutId() {
+        return R.layout.activity_main;
     }
 
-    private void initView() {
+    private LayoutInflater mLayoutInflater;
+
+
+    @Override
+    protected void initViews() {
+        UserManager.getInstance().autoLogon();
+
         //实例化布局对象
         mLayoutInflater = LayoutInflater.from(this);
         //实例化TabHost对象，得到TabHost
-        mTabHost.setup(this,getSupportFragmentManager(),R.id.realtabcontent);
+        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
         initTabs();
         mTabHost.getTabWidget().setShowDividers(0);
         mTabHost.setCurrentTab(0);
         mTabHost.setOnTabChangedListener(this);
     }
+
+    @Override
+    protected void initData() {
+
+    }
+
+
     private void initTabs() {
 
         MainTabEntity[] tabs = MainTabEntity.values();
@@ -67,5 +75,22 @@ public class MainActivity extends FragmentActivity implements TabHost.OnTabChang
     public void onTabChanged(String tabId) {
 
 
+    }
+
+    private long firstTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (System.currentTimeMillis() - firstTime > 2000) {
+                UIUtils.showToast("再按一次退出电影天堂");
+                firstTime = System.currentTimeMillis();
+            } else {
+                BaseActivity.getForegroundActivity().killAll();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
