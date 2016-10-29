@@ -30,7 +30,7 @@
                 app:layout_scrollFlags="scroll|enterAlways|snap">
 
 
-                <include layout="@layout/header_title" />
+                <include layout="@layout/item_movie_search" />
             </android.support.v7.widget.Toolbar>
 
 

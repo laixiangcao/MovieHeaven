@@ -23,4 +23,5 @@
     <dimen name="timeline_small_card_height">20.0dip</dimen>
     <dimen name="timeline_small_card_min_width">66.0dip</dimen>
     <dimen name="timeline_small_card_padding_right">5.0dip</dimen>
+    <dimen name="picture_translate_distance">30dp</dimen>
 </resources>

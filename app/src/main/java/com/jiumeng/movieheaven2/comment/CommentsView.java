@@ -76,7 +76,6 @@ public class CommentsView extends LinearLayout implements View.OnClickListener {
             @Override
             public void done(List<CommentEntity> commentList, BmobException e) {
                 if (e == null) {
-                    UIUtils.showToast("查询成功：共" + commentList.size() + "条数据。");
                     for (CommentEntity comment : commentList) {
                         //获得playerName的信息
                         comment.getAuthor();

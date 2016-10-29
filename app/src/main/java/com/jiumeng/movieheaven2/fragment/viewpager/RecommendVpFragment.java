@@ -1,9 +1,11 @@
 package com.jiumeng.movieheaven2.fragment.viewpager;
 
 
+import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.entity.MovieEntity;
 import com.jiumeng.movieheaven2.entity.MultipleItemEntity;
 import com.jiumeng.movieheaven2.fragment.impl.Impl2MultipleLayoutFragment;
+import com.jiumeng.movieheaven2.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +24,15 @@ public class RecommendVpFragment extends Impl2MultipleLayoutFragment {
 
     @Override
     public List<MultipleItemEntity> setMultipeItem2(ArrayList<ArrayList<MovieEntity>> data) {
+        String[] stringArray = UIUtils.getStringArray(R.array.recommend_sub_names);
         ArrayList<MultipleItemEntity> list = new ArrayList<>();
+        int i = 0;
         for (ArrayList<MovieEntity> movieEntities : data) {
-            list.add(new MultipleItemEntity(MultipleItemEntity.RECOMMEND, movieEntities));
+            MultipleItemEntity itemEntity = new MultipleItemEntity(MultipleItemEntity.RECOMMEND, movieEntities);
+            itemEntity.setTitle(stringArray[i]);
+            list.add(itemEntity);
+            i++;
         }
-        System.out.println("aaa"+list.size());
         return list;
     }
 }

@@ -11,7 +11,7 @@ import android.widget.EditText;
 import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.activity.BaseActivity;
 import com.jiumeng.movieheaven2.activity.BlankActivity;
-import com.jiumeng.movieheaven2.engine.UserManager;
+import com.jiumeng.movieheaven2.engine.AccountManager;
 import com.jiumeng.movieheaven2.entity.UserEntity;
 import com.jiumeng.movieheaven2.utils.UIUtils;
 
@@ -54,13 +54,12 @@ public class LoginFragment extends Fragment {
     }
 
     private void loginUser() {
-        UserManager.getInstance().login(etUserName.getText().toString(), etPassword.getText().toString(), new LogInListener<UserEntity>() {
+        AccountManager.getInstance().login(etUserName.getText().toString(), etPassword.getText().toString(), new LogInListener<UserEntity>() {
             @Override
             public void done(UserEntity user, BmobException e) {
                 if (user != null) {
                     UIUtils.showToast("登入成功");
-                    UserManager.getInstance().setLoginStatus(true);
-                    getActivity().setResult(0);
+                    AccountManager.getInstance().setLoginStatus(true);
                     BaseActivity.getForegroundActivity().finish();
                 }else {
                     UIUtils.showToast(e.getLocalizedMessage());

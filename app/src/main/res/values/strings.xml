@@ -11,7 +11,7 @@
     <string name="error_view_no_data">暂无内容</string>
     <string name="error_view_load_error_click_to_refresh">内容加载失败\r\n点击重新加载</string>
     <string name="error_view_network_error_click_to_refresh">网络异常\r\n点击重新加载</string>
-    
+
     <string name="search_hint">搜索电影、电视剧、动漫</string>
 
     <string name="loading">正在加载中...</string>
@@ -25,6 +25,8 @@
     <string name="str_feedback_et_hint">我们将为您不断改进</string>
     <string name="str_feedback_contact">截图描述：（可选）</string>
     <string name="str_feedback_tip">我们会仔细阅读您的反馈，并尽早给您回复。感谢您的理解与支持。</string>
+    <string name="title_discover">发现</string>
+    <string name="title_my_info">我的信息</string>
 
     <string-array name="classify_indicator_names">
         <item>动作</item>
@@ -33,12 +35,22 @@
         <item>喜剧</item>
         <item>剧情</item>
         <item>爱情</item>
+        <item>动画</item>
+        <item>悬疑</item>
+        <item>惊悚</item>
+        <item>战争</item>
+        <item>犯罪</item>
+    </string-array>
+    <string-array name="recommend_sub_names">
+        <item>新片精品</item>
+        <item>必看热片</item>
+        <item>迅雷电影</item>
+        <item>经典大片</item>
     </string-array>
     <string-array name="recommend_indicator_names">
         <item>推荐</item>
         <item>最新</item>
         <item>最热</item>
         <item>经典</item>
-        <item>美剧</item>
     </string-array>
 </resources>

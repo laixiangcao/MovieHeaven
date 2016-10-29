@@ -22,6 +22,8 @@
     <color name="retry_bg_normal">#fff</color>
 
     <color name="grey_light">#C7C5C8</color>
+    <color name="transparent_white">#00FFFFFF</color>
+
 
     <!--银灰色-->
     <color name="divide_line_silver">#bdc3c7</color>

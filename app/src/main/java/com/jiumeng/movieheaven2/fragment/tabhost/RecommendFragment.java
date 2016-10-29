@@ -1,10 +1,15 @@
 package com.jiumeng.movieheaven2.fragment.tabhost;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+
 import com.jiumeng.movieheaven2.R;
+import com.jiumeng.movieheaven2.activity.BlankActivity;
+import com.jiumeng.movieheaven2.activity.MovieDetailsActivity;
+import com.jiumeng.movieheaven2.activity.MovieSearchActivity;
 import com.jiumeng.movieheaven2.adapter.ViewPageFragmentAdapter;
 import com.jiumeng.movieheaven2.entity.ViewPageInfoEntity;
 import com.jiumeng.movieheaven2.fragment.base.BaseLoadFragment;
@@ -13,12 +18,16 @@ import com.jiumeng.movieheaven2.fragment.viewpager.HotestVpFragment;
 import com.jiumeng.movieheaven2.fragment.viewpager.NewestVpFragment;
 import com.jiumeng.movieheaven2.fragment.viewpager.RecommendVpFragment;
 import com.jiumeng.movieheaven2.network.NetWorkApi;
+import com.jiumeng.movieheaven2.utils.UIUtils;
 import com.jiumeng.movieheaven2.views.LoadingPage;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -33,7 +42,7 @@ public class RecommendFragment extends BaseLoadFragment {
 
     @Override
     protected View onCreateSuccessView() {
-        View mRootView = mLayoutInflater.inflate(R.layout.fragment_recommend, null);
+        View mRootView = mLayoutInflater.inflate(R.layout.fragment_recommend,null);
         ButterKnife.bind(this, mRootView);
 
         ViewPageFragmentAdapter mPageAdapter = new ViewPageFragmentAdapter(getContext(), getChildFragmentManager(), onSetupTabAdapter());
@@ -53,16 +62,25 @@ public class RecommendFragment extends BaseLoadFragment {
     private List<ViewPageInfoEntity> onSetupTabAdapter() {
         String[] strings = getContext().getResources().getStringArray(R.array.recommend_indicator_names);
         ArrayList<ViewPageInfoEntity> viewPageInfos = new ArrayList<>();
-        viewPageInfos.add(new ViewPageInfoEntity(strings[0], "recommend", RecommendVpFragment.class, getBundle(NetWorkApi.MOVIETYPE_ACTION)));
-        viewPageInfos.add(new ViewPageInfoEntity(strings[1], "newest", NewestVpFragment.class, getBundle(NetWorkApi.MOVIETYPE_NEWEST)));
-        viewPageInfos.add(new ViewPageInfoEntity(strings[2], "hotest", HotestVpFragment.class, getBundle(NetWorkApi.MOVIETYPE_HOTTEST)));
-        viewPageInfos.add(new ViewPageInfoEntity(strings[3], "classics", ClassicsVpFragment.class, getBundle(NetWorkApi.MOVIETYPE_CLASSICS)));
+        viewPageInfos.add(new ViewPageInfoEntity(strings[0], "recommend", RecommendVpFragment.class, getBundle(NetWorkApi.MOVIE_TYPE_RECOMMEND)));
+        viewPageInfos.add(new ViewPageInfoEntity(strings[1], "newest", NewestVpFragment.class, getBundle(NetWorkApi.MOVIE_TYPE_NEWEST)));
+        viewPageInfos.add(new ViewPageInfoEntity(strings[2], "hotest", HotestVpFragment.class, getBundle(NetWorkApi.MOVIE_TYPE_HOTTEST)));
+        viewPageInfos.add(new ViewPageInfoEntity(strings[3], "classics", ClassicsVpFragment.class, getBundle(NetWorkApi.MOVIE_TYPE_CLASSICS)));
         return viewPageInfos;
     }
 
-    private Bundle getBundle(int type){
+    private Bundle getBundle(int type) {
         Bundle bundle = new Bundle();
-        bundle.putInt("movieType",type);
+        bundle.putInt("movieType", type);
         return bundle;
+    }
+
+
+
+    @OnClick(R.id.et_search)
+    public void onClick() {
+        Intent intent = new Intent(getActivity(), MovieSearchActivity.class);
+//        intent.putExtra(BlankActivity.FRAGMENT_TYPE,BlankActivity.SEARCH_SERVICE);
+        startActivity(intent);
     }
 }

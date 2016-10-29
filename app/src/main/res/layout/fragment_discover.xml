@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_light"
     android:orientation="vertical">
 
     <TextView
+        style="@style/title"
+        android:text="@string/title_discover" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recy_movies"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/main_tab__name_discover"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:clipToPadding="false" />
 </LinearLayout>

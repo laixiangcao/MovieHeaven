@@ -74,6 +74,8 @@ public class PrefUtils {
         edit.commit();
     }
 
+//    public static
+
     /**
      * 获取缓存时间戳
      */
@@ -197,4 +199,6 @@ public class PrefUtils {
         }
         return retData;
     }
+
+
 }

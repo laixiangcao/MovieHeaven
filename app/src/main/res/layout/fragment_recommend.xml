@@ -1,46 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
     android:orientation="vertical">
 
-    <LinearLayout
+    <include layout="@layout/item_movie_search" />
+
+    <com.ogaclejapan.smarttablayout.SmartTabLayout
+        android:id="@+id/viewpagertab"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/green_light"
+        app:stl_customTabTextLayoutId="@layout/tab_tabtext2"
+        app:stl_distributeEvenly="true"
+        app:stl_dividerThickness="0dp"
+        app:stl_indicatorColor="@color/white"
+        app:stl_indicatorCornerRadius="1dp"
+        app:stl_indicatorInterpolation="linear"
+        app:stl_indicatorThickness="2dp"
+        app:stl_indicatorWithoutPadding="true"
+        app:stl_underlineThickness="0dp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <include
-            layout="@layout/header_title"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            app:layout_scrollFlags="scroll|enterAlways" />
-
-        <com.ogaclejapan.smarttablayout.SmartTabLayout
-            android:id="@+id/viewpagertab"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/green_light"
-            app:stl_customTabTextLayoutId="@layout/tab_tabtext2"
-            app:stl_distributeEvenly="true"
-            app:stl_dividerThickness="0dp"
-            app:stl_indicatorColor="@color/white"
-            app:stl_indicatorCornerRadius="1dp"
-            app:stl_indicatorInterpolation="linear"
-            app:stl_indicatorThickness="2dp"
-            app:stl_indicatorWithoutPadding="true"
-            app:stl_underlineThickness="0dp" />
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/white_light"
-            app:layout_behavior=".ScrollToTopBehavior" />
-    </LinearLayout>
+        android:background="@color/white_light" />
+</LinearLayout>
 
 
-</android.support.design.widget.CoordinatorLayout>
 

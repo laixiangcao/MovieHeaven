@@ -1,5 +1,6 @@
 package com.jiumeng.movieheaven2.fragment.impl;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,8 +9,8 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.jiumeng.movieheaven2.R;
-import com.jiumeng.movieheaven2.activity.BaseActivity;
 import com.jiumeng.movieheaven2.activity.BlankActivity;
+import com.jiumeng.movieheaven2.activity.MovieDetailsActivity;
 import com.jiumeng.movieheaven2.adapter.RecyclerViewBaseAdapter;
 import com.jiumeng.movieheaven2.entity.MovieEntity;
 import com.jiumeng.movieheaven2.entity.MultipleItemEntity;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
+
+import static android.R.attr.data;
 
 
 /**
@@ -60,12 +63,24 @@ public abstract class ImplMultipleLayoutFragment extends BaseMultipleLayoutFragm
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
                 MultipleItemEntity item = (MultipleItemEntity) baseQuickAdapter.getData().get(i);
-                Intent intent = new Intent(getContext(), BlankActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("movie", item.getData());
-                bundle.putInt("fragmentType", BlankActivity.FRAGMENT_TYPE_MOVIEDETAIL);
-                intent.putExtras(bundle);
-                getContext().startActivity(intent);
+//                Intent intent = new Intent(getContext(), BlankActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("movie", item.getData());
+//                bundle.putInt("fragmentType", BlankActivity.FRAGMENT_TYPE_MOVIE_DETAIL);
+//                intent.putExtras(bundle);
+//                getContext().startActivity(intent);
+
+                Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
+                intent.putExtra(MovieDetailsActivity.EXTRA_MOVIE, item.getData());
+                intent.putExtra(MovieDetailsActivity.EXTRA_NEED_LOAD_DETAIL,true);
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "");
+                    startActivity(intent, options.toBundle());
+                }else {
+                    startActivity(intent);
+                }
+
+
             }
         });
         mRecyclerView.setAdapter(mAdapter);

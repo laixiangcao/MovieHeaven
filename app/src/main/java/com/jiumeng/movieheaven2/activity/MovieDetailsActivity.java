@@ -1,6 +1,8 @@
-package com.jiumeng.movieheaven2.fragment.other;
+package com.jiumeng.movieheaven2.activity;
 
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -14,32 +16,28 @@ import com.jiumeng.movieheaven2.comment.CommentsView;
 import com.jiumeng.movieheaven2.comment.OnCommentClickListener;
 import com.jiumeng.movieheaven2.engine.DownloadManager;
 import com.jiumeng.movieheaven2.engine.GlideRoundTransform;
+import com.jiumeng.movieheaven2.engine.AccountManager;
 import com.jiumeng.movieheaven2.entity.CommentEntity;
 import com.jiumeng.movieheaven2.entity.MovieEntity;
-import com.jiumeng.movieheaven2.fragment.base.BaseLoadFragment;
 import com.jiumeng.movieheaven2.network.MyStringCallback;
 import com.jiumeng.movieheaven2.network.NetWorkApi;
 import com.jiumeng.movieheaven2.provider.ProcessData;
 import com.jiumeng.movieheaven2.utils.MyTextUtils;
 import com.jiumeng.movieheaven2.utils.UIUtils;
-import com.jiumeng.movieheaven2.views.LoadingPage;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
-import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import jp.wasabeef.glide.transformations.BlurTransformation;
 import okhttp3.Call;
 
-import static com.jiumeng.movieheaven2.network.NetWorkApi.APK_DOWNLOAD;
-
-
 /**
- * Created by Administrator on 2016/8/4 0004.
+ * Created by jiumeng on 2016/10/27.
  */
-public class MovieDetailsFragment extends BaseLoadFragment implements View.OnClickListener {
+public class MovieDetailsActivity extends BaseActivity {
+
 
     @BindView(R.id.iv_img)
     ImageView ivImg;
@@ -83,56 +81,49 @@ public class MovieDetailsFragment extends BaseLoadFragment implements View.OnCli
     CommentsView layDetailComment;
     @BindView(R.id.et_comment)
     EditText etComment;
+    @BindView(R.id.picture)
+    ImageView picture;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     private MovieEntity mMovieDetail;
 
+    /**
+     * Extra - Item.
+     */
+    public static final String EXTRA_MOVIE = "item";
+    public static final String EXTRA_NEED_LOAD_DETAIL = "needLoadDetail";
+    private boolean needLoadDetail;
+
+
     @Override
-    protected View onCreateSuccessView() {
-        View mRootView = mLayoutInflater.inflate(R.layout.fragment_movie_details, null);
-        ButterKnife.bind(this, mRootView);
-        showMovieDetail();
-        return mRootView;
+    protected int getLayoutId() {
+        return R.layout.activity_movie_detail;
     }
 
     @Override
-    protected void initPageData(boolean isFirstLoad) {
-        mMovieDetail = (MovieEntity) getArguments().getSerializable("movie");
-        loadMovieDetail();
+    protected void initViews() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        etComment.clearFocus();
     }
 
-    private void loadComment() {
-        layDetailComment.initComment(mMovieDetail.minName);
-        etComment.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId== EditorInfo.IME_ACTION_SEND){
-                    String content = etComment.getText().toString();
-                    etComment.setText("");
-                    final CommentEntity comment = new CommentEntity();
-                    comment.setAuthor("jiumeng");
-                    comment.setContent(content);
-                    comment.setMovieName(mMovieDetail.minName);
-                    comment.save(new SaveListener<String>() {
-                        @Override
-                        public void done(String s, BmobException e) {
-                            if (e==null){
-                                UIUtils.showToast("评论成功");
-                                layDetailComment.setFocusable(true);
-                                layDetailComment.scrollTo(0,layDetailComment.getScrollY());
-                                layDetailComment.addComment(false, comment, new OnCommentClickListener() {
-                                    @Override
-                                    public void onClick(View view, CommentEntity comment) {
-                                        UIUtils.showToast("暂未实现");
-                                    }
-                                });
-                            }else {
-                                UIUtils.showToast(e.getLocalizedMessage());
-                            }
-                        }
-                    });
-                }
-                return false;
-            }
-        });
+    @Override
+    protected void initData() {
+        mMovieDetail = (MovieEntity) getIntent().getSerializableExtra(EXTRA_MOVIE);
+        needLoadDetail = getIntent().getBooleanExtra(EXTRA_NEED_LOAD_DETAIL, false);
+        getSupportActionBar().setTitle(mMovieDetail.minName);
+        initUI();
+    }
+
+
+    private void initUI() {
+        if (!needLoadDetail) {
+            setPageContent();
+        } else {
+            UIUtils.showToast("正在加载");
+            loadMovieDetail();
+        }
+        loadComment();
     }
 
     /**
@@ -143,7 +134,6 @@ public class MovieDetailsFragment extends BaseLoadFragment implements View.OnCli
             @Override
             public void onError(Call call, Exception e, int id) {
                 //网络
-                loadDataComplete(LoadingPage.ResultState.STATE_NONETWORK);
                 UIUtils.showToast(e.getLocalizedMessage());
             }
 
@@ -151,19 +141,24 @@ public class MovieDetailsFragment extends BaseLoadFragment implements View.OnCli
             public void onResponse(String response, int id) {
                 mMovieDetail = ProcessData.parseMovieDetails(response, mMovieDetail, false);
                 if (mMovieDetail != null) {
-                    loadDataComplete(LoadingPage.ResultState.STATE_SUCCESS);
+                    setPageContent();
                 } else {
-                    loadDataComplete(LoadingPage.ResultState.STATE_ERROR);
+                    UIUtils.showToast("加载失败");
                 }
 
             }
         });
+
     }
 
-    private void showMovieDetail() {
-        Glide.with(getContext()).load(mMovieDetail.jpgList.get(0)).transform(new GlideRoundTransform(getContext(), 5)).placeholder(R.drawable.default_movie_image).into(ivImg);
+    private void setPageContent() {
+        String imgUrl = mMovieDetail.jpgList.get(0);
+        if (imgUrl != null) {
+            Glide.with(this).load(imgUrl).error(R.drawable.default_movie_image).bitmapTransform(new BlurTransformation(this, 50)).into(picture);
+            Glide.with(this).load(imgUrl).error(R.drawable.default_movie_image).bitmapTransform(new GlideRoundTransform(this, 4)).into(ivImg);
+        }
         if (mMovieDetail.jpgList != null && mMovieDetail.jpgList.size() > 1) {
-            Glide.with(getContext()).load(mMovieDetail.jpgList.get(1)).fitCenter().error(R.drawable.default_movie_image2).into(ivImg2);
+            Glide.with(this).load(mMovieDetail.jpgList.get(1)).fitCenter().error(R.drawable.default_movie_image2).into(ivImg2);
         }
         tvTitle.setText(mMovieDetail.minName);
         tvYears.setText("年代：" + mMovieDetail.years);
@@ -182,8 +177,42 @@ public class MovieDetailsFragment extends BaseLoadFragment implements View.OnCli
         tvDirector.setText(mMovieDetail.director);
         tvStarring.setText(mMovieDetail.starring);
         tvIntroduction.setText("  " + mMovieDetail.introduction);
+    }
 
-        loadComment();
+    private void loadComment() {
+        layDetailComment.initComment(mMovieDetail.minName);
+        etComment.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    String content = etComment.getText().toString();
+                    etComment.setText("");
+                    final CommentEntity comment = new CommentEntity();
+                    comment.setAuthor("jiumeng");
+                    comment.setContent(content);
+                    comment.setMovieName(mMovieDetail.minName);
+                    comment.save(new SaveListener<String>() {
+                        @Override
+                        public void done(String s, BmobException e) {
+                            if (e == null) {
+                                UIUtils.showToast("评论成功");
+                                layDetailComment.setFocusable(true);
+                                layDetailComment.scrollTo(0, layDetailComment.getScrollY());
+                                layDetailComment.addComment(false, comment, new OnCommentClickListener() {
+                                    @Override
+                                    public void onClick(View view, CommentEntity comment) {
+                                        UIUtils.showToast("暂未实现");
+                                    }
+                                });
+                            } else {
+                                UIUtils.showToast(e.getLocalizedMessage());
+                            }
+                        }
+                    });
+                }
+                return false;
+            }
+        });
     }
 
 
@@ -191,12 +220,22 @@ public class MovieDetailsFragment extends BaseLoadFragment implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_fav:
+                AccountManager.getInstance().addFavorite(this, mMovieDetail, new SaveListener<String>() {
+                    @Override
+                    public void done(String s, BmobException e) {
+                        if (e == null) {
+                            UIUtils.showToast("收藏成功" + s);
+                        } else {
+                            UIUtils.showToast(e.getLocalizedMessage());
+                        }
+                    }
+                });
                 break;
             case R.id.iv_share:
                 showShare();
                 break;
             case R.id.iv_download:
-                new DownloadManager(getContext()).startXunlei(mMovieDetail.downlist.get(0));
+                new DownloadManager(this).startXunlei(mMovieDetail.downlist.get(0));
                 break;
         }
     }
@@ -204,7 +243,7 @@ public class MovieDetailsFragment extends BaseLoadFragment implements View.OnCli
 
     private void showShare() {
         String downUrl = "";
-        if (mMovieDetail.downlist!=null&&mMovieDetail.downlist.size()>0){
+        if (mMovieDetail.downlist != null && mMovieDetail.downlist.size() > 0) {
             downUrl = mMovieDetail.downlist.get(0);
         }
 
@@ -215,7 +254,7 @@ public class MovieDetailsFragment extends BaseLoadFragment implements View.OnCli
         // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
         oks.setTitleUrl(NetWorkApi.APK_DOWNLOAD);
         // text是分享文本，所有平台都需要这个字段
-        oks.setText("这部电影真的不错喔："+mMovieDetail.minName+"\n下载链接："+downUrl);
+        oks.setText("这部电影真的不错喔：" + mMovieDetail.minName + "\n下载链接：" + downUrl);
 
 //        oks.setUrl(downUrl);
 
@@ -231,5 +270,14 @@ public class MovieDetailsFragment extends BaseLoadFragment implements View.OnCli
         oks.show(UIUtils.getContext());
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return (super.onOptionsItemSelected(item));
+    }
 
 }

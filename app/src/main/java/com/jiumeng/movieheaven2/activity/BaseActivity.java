@@ -4,13 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-
 import com.jiumeng.movieheaven2.utils.UIUtils;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
 import butterknife.ButterKnife;
 
 /**
@@ -50,12 +47,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         initData();
     }
 
+    protected abstract int getLayoutId();
 
     protected abstract void initViews();
 
     protected abstract void initData();
 
-    protected abstract int getLayoutId();
+
 
 
 

@@ -3,10 +3,11 @@
     android:id="@+id/custom_text"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="?attr/selectableItemBackground"
+
     android:gravity="center"
     android:paddingLeft="24dp"
     android:paddingRight="24dp"
     android:textColor="@color/white"
     android:textSize="14sp">
+    <!--android:background="?attr/selectableItemBackground"-->
 </TextView>

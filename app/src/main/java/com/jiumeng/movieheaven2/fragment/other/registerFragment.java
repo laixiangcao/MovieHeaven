@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.activity.BaseActivity;
-import com.jiumeng.movieheaven2.engine.UserManager;
+import com.jiumeng.movieheaven2.engine.AccountManager;
 import com.jiumeng.movieheaven2.entity.UserEntity;
 import com.jiumeng.movieheaven2.utils.UIUtils;
 
@@ -54,12 +54,12 @@ public class RegisterFragment extends Fragment {
         String userName = etUserName.getText().toString();
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
-        UserManager.getInstance().register(userName, email, password, new SaveListener<UserEntity>() {
+        AccountManager.getInstance().register(userName, email, password, new SaveListener<UserEntity>() {
             @Override
             public void done(UserEntity user, BmobException e) {
                 if (e == null) {
                     UIUtils.showToast("注册成功");
-                    UserManager.getInstance().autoLogon();
+                    AccountManager.getInstance().autoLogon();
                     BaseActivity.getForegroundActivity().finish();
                 } else {
                     UIUtils.showToast(e.getLocalizedMessage());

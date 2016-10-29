@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * movieInfo
  * Created by jiumeng on 2016/4/13.
  */
-public class MovieEntity implements Serializable {
+public class MovieEntity  implements Serializable {
     private static final long serialVersionUID = 2L;
     //热门&最新：    url id name minNmae  日期 评分 类型 年代  国家  语言 字幕 上映日期
     //分类：         url id name minName  日期 评分 类型 导演  主演

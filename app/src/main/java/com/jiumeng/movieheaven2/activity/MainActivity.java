@@ -9,7 +9,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.jiumeng.movieheaven2.R;
-import com.jiumeng.movieheaven2.engine.UserManager;
+import com.jiumeng.movieheaven2.engine.AccountManager;
 import com.jiumeng.movieheaven2.entity.MainTabEntity;
 import com.jiumeng.movieheaven2.utils.UIUtils;
 
@@ -31,7 +31,7 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
 
     @Override
     protected void initViews() {
-        UserManager.getInstance().autoLogon();
+        AccountManager.getInstance().autoLogon();
 
         //实例化布局对象
         mLayoutInflater = LayoutInflater.from(this);

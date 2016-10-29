@@ -44,6 +44,9 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'cn.bmob.android:http-legacy:1.0'
-//    compile 'cn.bmob.android:bmob-sdk:3.5.1'
+    //    compile 'cn.bmob.android:bmob-sdk:3.5.1'
     compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.azoft.carousellayoutmanager:carousel:1.1.6'
+    compile 'jp.wasabeef:glide-transformations:2.0.1'
+    compile 'com.zzhoujay.richtext:richtext:2.1.1'
 }

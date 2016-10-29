@@ -6,7 +6,6 @@ import com.jiumeng.movieheaven2.utils.MyTextUtils;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static android.R.attr.type;
 
 /**
  * 实现请求网络数据的封装
@@ -15,66 +14,68 @@ import static android.R.attr.type;
  */
 public class NetWorkApi {
 
+    public static final int MOVIE_TYPE_RECOMMEND = 17;
+
     /**
      * 经典电影类型
      */
-    public static final int MOVIETYPE_CLASSICS = 16;
+    public static final int MOVIE_TYPE_CLASSICS = 16;
     /**
      * 影院电影类型
      */
-    public static final int MOVIETYPE_CINEMAMOVIE = 14;
+    public static final int MOVIE_TYPE_CINEMAMOVIE = 14;
     /**
      * 最新电影类型
      */
-    public static final int MOVIETYPE_NEWEST = 15;
+    public static final int MOVIE_TYPE_NEWEST = 15;
     /**
      * 最热电影类型
      */
-    public static final int MOVIETYPE_HOTTEST = 2;
+    public static final int MOVIE_TYPE_HOTTEST = 2;
     /**
      * 剧情
      */
-    public static final int MOVIETYPE_SCENARIO = 3;
+    public static final int MOVIE_TYPE_SCENARIO = 3;
     /**
      * 喜剧
      */
-    public static final int MOVIETYPE_COMEDY = 4;
+    public static final int MOVIE_TYPE_COMEDY = 4;
     /**
      * 动作
      */
-    public static final int MOVIETYPE_ACTION = 5;
+    public static final int MOVIE_TYPE_ACTION = 5;
     /**
      * 爱情
      */
-    public static final int MOVIETYPE_AFFECTION = 6;
+    public static final int MOVIE_TYPE_AFFECTION = 6;
     /**
      * 科幻
      */
-    public static final int MOVIETYPE_SCIENCE_FICTION = 7;
+    public static final int MOVIE_TYPE_SCIENCE_FICTION = 7;
     /**
      * 动画
      */
-    public static final int MOVIETYPE_ANIMATION = 8;
+    public static final int MOVIE_TYPE_ANIMATION = 8;
     /**
      * 悬疑
      */
-    public static final int MOVIETYPE_SUSPENSE = 9;
+    public static final int MOVIE_TYPE_SUSPENSE = 9;
     /**
      * 惊悚
      */
-    public static final int MOVIETYPE_PANIC = 10;
+    public static final int MOVIE_TYPE_PANIC = 10;
     /**
      * 战争
      */
-    public static final int MOVIETYPE_WAR = 11;
+    public static final int MOVIE_TYPE_WAR = 11;
     /**
      * 犯罪
      */
-    public static final int MOVIETYPE_CRIME = 12;
+    public static final int MOVIE_TYPE_CRIME = 12;
     /**
      * 恐怖
      */
-    public static final int MOVIETYPE_TERROR = 13;
+    public static final int MOVIE_TYPE_TERROR = 13;
 
 
     public final static String MYHOST = "http://oaydggmwi.bkt.clouddn.com";//主连接
@@ -83,7 +84,6 @@ public class NetWorkApi {
 
     /**
      * 获取指定类型和指定页数的电影集合
-     *
      * @param catalog 电影类型
      * @param page    页
      * @param handler 接收请求结果的handler
@@ -91,53 +91,53 @@ public class NetWorkApi {
     public static void getPageInfoFromNet(int catalog, int page, Object tag, MyStringCallback handler) {
         String path = "";
         switch (catalog) {
-            case MOVIETYPE_NEWEST:
+            case MOVIE_TYPE_NEWEST:
                 if (page == 1) {
                     path = HOST + "/html/gndy/dyzz/index.html";
                 } else {
                     path = HOST + "/html/gndy/dyzz/index_" + page + ".html";
                 }
                 break;
-            case MOVIETYPE_HOTTEST:
+            case MOVIE_TYPE_HOTTEST:
                 path = HOST + MyTextUtils.page2Url("/html/bikan/", page);
                 break;
-            case MOVIETYPE_CLASSICS:
+            case MOVIE_TYPE_CLASSICS:
                 path = HOST + MyTextUtils.page2Url("/html/gndy/jddyy/", page);
                 break;
-            case MOVIETYPE_SCENARIO:
+            case MOVIE_TYPE_SCENARIO:
                 path = HOST + MyTextUtils.page2Url("/0/", page);
                 break;
-            case MOVIETYPE_COMEDY:
+            case MOVIE_TYPE_COMEDY:
                 path = HOST + MyTextUtils.page2Url("/1/", page);
                 break;
-            case MOVIETYPE_ACTION:
+            case MOVIE_TYPE_ACTION:
                 path = HOST + MyTextUtils.page2Url("/2/", page);
                 break;
-            case MOVIETYPE_AFFECTION:
+            case MOVIE_TYPE_AFFECTION:
                 path = HOST + MyTextUtils.page2Url("/3/", page);
                 break;
-            case MOVIETYPE_SCIENCE_FICTION:
+            case MOVIE_TYPE_SCIENCE_FICTION:
                 path = HOST + MyTextUtils.page2Url("/4/", page);
                 break;
-            case MOVIETYPE_ANIMATION:
+            case MOVIE_TYPE_ANIMATION:
                 path = HOST + MyTextUtils.page2Url("/5/", page);
                 break;
-            case MOVIETYPE_SUSPENSE:
+            case MOVIE_TYPE_SUSPENSE:
                 path = HOST + MyTextUtils.page2Url("/6/", page);
                 break;
-            case MOVIETYPE_PANIC:
+            case MOVIE_TYPE_PANIC:
                 path = HOST + MyTextUtils.page2Url("/7/", page);
                 break;
-            case MOVIETYPE_WAR:
+            case MOVIE_TYPE_WAR:
                 path = HOST + MyTextUtils.page2Url("/14/", page);
                 break;
-            case MOVIETYPE_CRIME:
+            case MOVIE_TYPE_CRIME:
                 path = HOST + MyTextUtils.page2Url("/5/", page);
                 break;
-            case MOVIETYPE_TERROR:
+            case MOVIE_TYPE_TERROR:
                 path = HOST + MyTextUtils.page2Url("/8/", page);
                 break;
-            case MOVIETYPE_CINEMAMOVIE:
+            case MOVIE_TYPE_CINEMAMOVIE:
                 path = MYHOST + "/CinemaMovie/CinemaMovieList" + page + ".json";
                 break;
         }

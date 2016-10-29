@@ -348,4 +348,14 @@ public class ProcessData {
         return homeUrlList;
     }
 
+    public static String getSearchResult(String result){
+        int idx1 = result.indexOf("<div class=\"spage\">");
+        int idx2 = result.lastIndexOf("<div class=\"spage\">");
+        if (idx1!=-1&&idx2!=-1&&idx1<idx2){
+            return result.substring(idx1, idx2);
+        }else {
+            return "";
+        }
+    }
+
 }

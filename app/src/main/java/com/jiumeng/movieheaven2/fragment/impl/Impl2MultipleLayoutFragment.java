@@ -3,15 +3,15 @@ package com.jiumeng.movieheaven2.fragment.impl;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.jiumeng.movieheaven2.adapter.RecyclerViewBaseAdapter;
 import com.jiumeng.movieheaven2.entity.MovieEntity;
 import com.jiumeng.movieheaven2.entity.MultipleItemEntity;
 import com.jiumeng.movieheaven2.fragment.base.BaseMultipleLayoutFragment;
 import com.jiumeng.movieheaven2.network.MyStringCallback;
 import com.jiumeng.movieheaven2.network.NetWorkApi;
+import com.jiumeng.movieheaven2.provider.DataTools;
 import com.jiumeng.movieheaven2.provider.ProcessData;
+import com.jiumeng.movieheaven2.utils.PrefUtils;
 import com.jiumeng.movieheaven2.utils.UIUtils;
 import com.jiumeng.movieheaven2.views.LoadingPage;
 
@@ -55,11 +55,27 @@ public abstract class Impl2MultipleLayoutFragment extends BaseMultipleLayoutFrag
 
     @Override
     protected void initPageData(final boolean isFirstLoad) {
+
+        if (isFirstLoad) {
+            //读取缓存
+            initData = (List<MultipleItemEntity>) PrefUtils.readObject("MovieType:" + getMovieType());
+            if (initData != null) {
+                loadDataComplete(DataTools.checkData(initData));
+                return;
+            }
+        }
+
         NetWorkApi.getMovieDetailInfo(NetWorkApi.HOST, this, new MyStringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 UIUtils.showToast(e.getLocalizedMessage());
-                loadDataComplete(LoadingPage.ResultState.STATE_ERROR);
+                if (isFirstLoad){
+                    loadDataComplete(LoadingPage.ResultState.STATE_ERROR);
+                }else {
+                    mSwipRefresh.setRefreshing(false);
+                }
+
+
             }
 
             @Override
@@ -68,7 +84,7 @@ public abstract class Impl2MultipleLayoutFragment extends BaseMultipleLayoutFrag
                 if (homeUrl != null) {
                     data = new ArrayList<>();
                     for (ArrayList<String> urlList : homeUrl) {
-                        setSubRecommend(urlList);
+                        setSubRecommend(urlList,isFirstLoad);
                     }
                 }
 
@@ -77,7 +93,7 @@ public abstract class Impl2MultipleLayoutFragment extends BaseMultipleLayoutFrag
         });
     }
 
-    private void setSubRecommend(final ArrayList<String> urlList) {
+    private void setSubRecommend(final ArrayList<String> urlList, final boolean isFirstLoad) {
         final ArrayList<MovieEntity> movieList = new ArrayList<>();
         for (final String url : urlList) {
             NetWorkApi.getMovieDetailInfo(url, this, new MyStringCallback() {
@@ -92,17 +108,22 @@ public abstract class Impl2MultipleLayoutFragment extends BaseMultipleLayoutFrag
                     movie.url = url;
                     movie = ProcessData.parseMovieDetails(response, movie, true);
                     movieList.add(movie);
-                    if (movieList.size()==urlList.size()){
+                    if (movieList.size() == urlList.size()) {
                         data.add(movieList);
-                        if (data.size()==4){
-                            initData= setMultipeItem2(data);
-                            loadDataComplete(LoadingPage.ResultState.STATE_SUCCESS);
+                        if (data.size() == 4) {
+                            initData = setMultipeItem2(data);
+                            PrefUtils.saveObject("MovieType:" + getMovieType(), initData);
+                            if (isFirstLoad){
+                                loadDataComplete(LoadingPage.ResultState.STATE_SUCCESS);
+                            }else {
+                                mAdapter.setNewData(initData);
+                                mSwipRefresh.setRefreshing(false);
+                            }
                         }
                     }
                 }
             });
         }
-
     }
 
     @Override

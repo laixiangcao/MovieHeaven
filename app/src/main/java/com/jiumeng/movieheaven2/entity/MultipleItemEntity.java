@@ -1,7 +1,6 @@
 package com.jiumeng.movieheaven2.entity;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -15,10 +14,22 @@ public class MultipleItemEntity implements MultiItemEntity, Serializable {
     public static final int GRID = 1;
     public static final int RECOMMEND = 2;
     public static final int AD = 3;
+    private String title;
     private ArrayList<MovieEntity> dataList;
     private MovieEntity data;
     private int spanSize;   //距距列数
     private int itemType;
+
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
 
     public MultipleItemEntity(int itemType, int spanSize) {
         this.itemType = itemType;

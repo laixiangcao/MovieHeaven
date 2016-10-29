@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.activity.BaseActivity;
-import com.jiumeng.movieheaven2.engine.UserManager;
+import com.jiumeng.movieheaven2.engine.AccountManager;
 import com.jiumeng.movieheaven2.entity.UserEntity;
 import com.jiumeng.movieheaven2.utils.MyTextUtils;
 import com.jiumeng.movieheaven2.utils.UIUtils;
@@ -55,7 +55,7 @@ public class UserInfoFragment extends Fragment {
      * 显示用户信息
      */
     private void showUserInfo() {
-        UserEntity user = UserManager.getInstance().getCurrentUser();
+        UserEntity user = AccountManager.getInstance().getCurrentUser();
         if (!MyTextUtils.isEmpty(user.getEmail())) {
             tvEmail.setText(user.getEmail());
         }
@@ -82,14 +82,14 @@ public class UserInfoFragment extends Fragment {
             case R.id.alter_pwd:
                 break;
             case R.id.logout_user:
-                UserManager.getInstance().logout();
+                AccountManager.getInstance().logout();
                 BaseActivity.getForegroundActivity().finish();
                 break;
         }
     }
 
     private void boundEmail() {
-        UserManager userManager = UserManager.getInstance();
+        AccountManager userManager = AccountManager.getInstance();
         final String email = userManager.getCurrentUser().getEmail();
         userManager.emailVerify(email, new UpdateListener() {
             @Override

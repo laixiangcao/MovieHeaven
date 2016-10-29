@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.activity.BlankActivity;
-import com.jiumeng.movieheaven2.engine.UserManager;
+import com.jiumeng.movieheaven2.engine.AccountManager;
 import com.jiumeng.movieheaven2.entity.UserEntity;
 import com.jiumeng.movieheaven2.utils.UIUtils;
 
@@ -50,7 +50,7 @@ public class MyInfoFragment extends Fragment {
     }
 
     private void setUserInfo() {
-        UserManager userManager = UserManager.getInstance();
+        AccountManager userManager = AccountManager.getInstance();
         if (userManager.getLoginStatus()) {
             UserEntity user = userManager.getCurrentUser();
             userName.setText(user.getUsername());
@@ -74,6 +74,9 @@ public class MyInfoFragment extends Fragment {
             case R.id.my_msg:
                 break;
             case R.id.my_fav:
+                Intent intent2 = new Intent(getActivity(), BlankActivity.class);
+                intent2.putExtra("fragmentType", BlankActivity.FRAGMENT_TYPE_FAVORITE);
+                getContext().startActivity(intent2);
                 break;
             case R.id.recommend:
                 recommend();
@@ -121,7 +124,7 @@ public class MyInfoFragment extends Fragment {
     }
 
     private void editUser() {
-        if (UserManager.getInstance().getLoginStatus()) {
+        if (AccountManager.getInstance().getLoginStatus()) {
             Intent mIntent = new Intent(getActivity(), BlankActivity.class);
             mIntent.putExtra("fragmentType", BlankActivity.FRAGMENT_TYPE_USER_INFO);
             getContext().startActivity(mIntent);
@@ -132,7 +135,7 @@ public class MyInfoFragment extends Fragment {
     }
 
     private void userLogin() {
-        if (!UserManager.getInstance().getLoginStatus()) {
+        if (!AccountManager.getInstance().getLoginStatus()) {
             Intent intent = new Intent(getActivity(), BlankActivity.class);
             intent.putExtra("fragmentType", BlankActivity.FRAGMENT_TYPE_LOGIN);
             getContext().startActivity(intent);

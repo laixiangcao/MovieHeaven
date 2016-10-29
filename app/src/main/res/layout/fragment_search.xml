@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_clear_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:drawableRight="@drawable/ic_clear"
+            android:text="搜索历史"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/sp_16" />
+        <com.jiumeng.movieheaven2.views.FlowLayout
+            android:id="@+id/fl_search_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="热门搜索"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/sp_16" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recy_hot_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp" />
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
