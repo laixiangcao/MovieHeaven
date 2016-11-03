@@ -75,12 +75,12 @@
 
             <TextView
                 style="@style/option_item_text_parent"
-                android:text="启动时自动检测更新"
+                android:text="wifi模式下静默下载更新"
                 android:textColor="#333333"
                 android:textSize="@dimen/text_size_16" />
 
             <com.jiumeng.movieheaven2.views.ToggleButton
-                android:id="@+id/tb_detection_update"
+                android:id="@+id/tb_is_silent_update"
                 style="@style/option_item_toggleButton"
                 android:layout_alignParentRight="true" />
         </RelativeLayout>

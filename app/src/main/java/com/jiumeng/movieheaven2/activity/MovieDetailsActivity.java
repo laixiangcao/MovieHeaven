@@ -158,7 +158,7 @@ public class MovieDetailsActivity extends BaseActivity {
             Glide.with(this).load(imgUrl).error(R.drawable.default_movie_image).bitmapTransform(new GlideRoundTransform(this, 4)).into(ivImg);
         }
         if (mMovieDetail.jpgList != null && mMovieDetail.jpgList.size() > 1) {
-            Glide.with(this).load(mMovieDetail.jpgList.get(1)).fitCenter().error(R.drawable.default_movie_image2).into(ivImg2);
+            Glide.with(this).load(mMovieDetail.jpgList.get(1)).error(R.drawable.default_movie_image2).into(ivImg2);
         }
         tvTitle.setText(mMovieDetail.minName);
         tvYears.setText("年代：" + mMovieDetail.years);

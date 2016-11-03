@@ -65,11 +65,11 @@ public class MyInfoFragment extends Fragment {
         setUserInfo();
     }
 
-    @OnClick({R.id.profile_image, R.id.my_msg, R.id.my_fav, R.id.recommend, R.id.feedback, R.id.setting, R.id.edit_user})
+    @OnClick({R.id.profile_image, R.id.my_msg, R.id.my_fav, R.id.recommend, R.id.feedback, R.id.setting})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.profile_image:
-                userLogin();
+                editUser();
                 break;
             case R.id.my_msg:
                 break;
@@ -90,9 +90,6 @@ public class MyInfoFragment extends Fragment {
                 Intent mIntent = new Intent(getActivity(), BlankActivity.class);
                 mIntent.putExtra("fragmentType", BlankActivity.FRAGMENT_TYPE_SETTING);
                 getContext().startActivity(mIntent);
-                break;
-            case R.id.edit_user:
-                editUser();
                 break;
         }
     }

@@ -118,11 +118,7 @@ public class RecyclerViewBaseAdapter extends BaseMultiItemQuickAdapter<MultipleI
                     @Override
                     public void onCenterItemClicked(@NonNull final RecyclerView recyclerView, @NonNull final CarouselLayoutManager carouselLayoutManager, @NonNull final View v) {
                         int position = recyclerView.getChildLayoutPosition(v);
-//                        Intent intent = new Intent(BaseActivity.getForegroundActivity(), BlankActivity.class);
-//                        Bundle bundle = new Bundle();
-//                        bundle.putSerializable("movie", dataList.get(position));
-//                        intent.putExtras(bundle);
-//                        BaseActivity.getForegroundActivity().startActivity(intent);
+
 
                         Intent intent = new Intent(BaseActivity.getForegroundActivity(), MovieDetailsActivity.class);
                         intent.putExtra(MovieDetailsActivity.EXTRA_MOVIE, dataList.get(position));
@@ -140,34 +136,4 @@ public class RecyclerViewBaseAdapter extends BaseMultiItemQuickAdapter<MultipleI
         }
     }
 
-//    private void addView(ArrayList<MovieEntity> dataList, LinearLayout linearLayout, int i) {
-//        for (int j = i; j < i + 3; j++) {
-//            MovieEntity movieDao = dataList.get(i);
-//
-//            View view = UIUtils.inflate(R.layout.item_grid_movie);
-//            ImageView imageView = (ImageView) view.findViewById(R.id.iv_img);
-//            TextView tvName = (TextView) view.findViewById(R.id.tv_name);
-//            RatingBar rbGrade = (RatingBar) view.findViewById(R.id.rb_grade);
-//            TextView tvUpdate = (TextView) view.findViewById(R.id.tv_update);
-//
-//            Glide.with(UIUtils.getContext()).load(MyTextUtils.id2Url(movieDao.id)).into(imageView);
-//            tvName.setText(movieDao.minName);
-//            tvUpdate.setText(movieDao.updatetime);
-//
-//            if (!TextUtils.isEmpty(movieDao.grade)) {
-//                try {
-//                    float grade = Float.parseFloat(movieDao.grade) / 2;
-//                    rbGrade.setRating(grade);
-//                } catch (NumberFormatException e) {
-//                    rbGrade.setRating(0);
-//                }
-//            }
-//            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.MarginLayoutParams.WRAP_CONTENT, ViewGroup.MarginLayoutParams.WRAP_CONTENT);
-//            layoutParams.weight = 1;
-//            int margin = UIUtils.dip2px(5);
-//            layoutParams.setMargins(margin, margin, margin, margin);
-//            linearLayout.addView(view, layoutParams);
-//
-//        }
-//    }
 }

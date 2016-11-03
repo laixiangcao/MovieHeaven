@@ -10,13 +10,15 @@ import android.net.Uri;
 import android.os.Environment;
 import android.widget.Toast;
 
-import com.jiumeng.movieheaven2.activity.BaseActivity;
 import com.jiumeng.movieheaven2.network.NetWorkApi;
 import com.jiumeng.movieheaven2.utils.MyTextUtils;
 import com.jiumeng.movieheaven2.utils.PrefUtils;
 import com.jiumeng.movieheaven2.utils.UIUtils;
 
 import java.io.File;
+import java.util.List;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 /**
  * Created by jiumeng on 2016/10/15.
@@ -44,6 +46,7 @@ public class DownloadManager {
         //检测是否已安装迅雷软件
         if (isInstallXunlei()) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
             intent.addCategory("android.intent.category.DEFAULT");
             UIUtils.getContext().startActivity(intent);
         } else {
@@ -127,23 +130,23 @@ public class DownloadManager {
      */
     private boolean isInstallXunlei() {
         String pkgName = "com.xunlei.downloadprovider";
-        PackageInfo packageInfo;
-        try {
-            packageInfo = UIUtils.getContext().getPackageManager().getPackageInfo(pkgName, 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            packageInfo = null;
-            e.printStackTrace();
-        }
-        return packageInfo != null;
+//        PackageInfo packageInfo;
+//        try {
+//            packageInfo = UIUtils.getContext().getPackageManager().getPackageInfo(pkgName, 0);
+//        } catch (PackageManager.NameNotFoundException e) {
+//            packageInfo = null;
+//            e.printStackTrace();
+//        }
+//        return packageInfo != null;
 
         //方法二：判断软件是否安装
-//        final PackageManager packageManager = mContext.getPackageManager();
-//        // 获取所有已安装程序的包信息
-//        List<PackageInfo> pinfo = packageManager.getInstalledPackages(0);
-//        for (int i = 0; i < pinfo.size(); i++) {
-//            if (pinfo.get(i).packageName.equalsIgnoreCase(pkgName))
-//                return true;
-//        }
-//        return false;
+        final PackageManager packageManager = mContext.getPackageManager();
+        // 获取所有已安装程序的包信息
+        List<PackageInfo> pinfo = packageManager.getInstalledPackages(0);
+        for (int i = 0; i < pinfo.size(); i++) {
+            if (pinfo.get(i).packageName.equalsIgnoreCase(pkgName))
+                return true;
+        }
+        return false;
     }
 }

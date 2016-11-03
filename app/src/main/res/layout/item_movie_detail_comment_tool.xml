@@ -5,6 +5,8 @@
     tools:showIn="@layout/activity_movie_detail">
 
     <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:id="@+id/lay_option"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,10 +16,11 @@
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:paddingLeft="8dp"
-        app:layout_anchor="@id/nsv"
+
         app:layout_anchorGravity="bottom"
         app:layout_behavior="com.jiumeng.movieheaven2.views.FloatingAutoHideDownBehavior2"
         app:layout_scrollFlags="scroll|enterAlways">
+        <!--app:layout_anchor="@id/nsv"-->
 
 
         <EditText

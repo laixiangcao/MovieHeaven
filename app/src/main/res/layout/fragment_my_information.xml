@@ -15,17 +15,6 @@
         android:layout_height="160dp"
         android:background="@color/green_light">
 
-        <TextView
-            android:id="@+id/edit_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_margin="16dp"
-            android:background="@color/colorAccent"
-            android:text="编辑用户"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_14" />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

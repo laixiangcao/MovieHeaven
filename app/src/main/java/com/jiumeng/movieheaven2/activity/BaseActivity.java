@@ -37,7 +37,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivities.add(this);
-        System.out.println("aaaaa"+mActivities.size()+this.getClass());
         if (getLayoutId() != 0) {
             setContentView(getLayoutId());
         }
@@ -105,6 +104,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             // 结束当前 Activity, 也可以使用广播
             activity.finish();
         }
+        System.exit(0);
     }
 
 

@@ -60,9 +60,9 @@ public class PrefUtils {
         edit.commit();
     }
 
-    public static boolean getBoolean(String key) {
+    public static boolean getBoolean(String key,boolean def) {
         SharedPreferences config = UIUtils.getContext().getSharedPreferences("config", Context.MODE_PRIVATE);
-        return config.getBoolean(key, false);
+        return config.getBoolean(key, def);
     }
 
     /**

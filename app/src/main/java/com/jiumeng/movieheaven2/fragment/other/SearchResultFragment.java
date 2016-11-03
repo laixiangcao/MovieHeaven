@@ -13,7 +13,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zzhoujay.richtext.RichText;
 import com.zzhoujay.richtext.callback.OnURLClickListener;
-
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import butterknife.BindView;
@@ -44,44 +44,51 @@ public class SearchResultFragment extends BaseLoadFragment {
     @Override
     protected void initPageData(boolean isFirstLoad) {
         keyword = getArguments().getString(SEARCH_CONTENT);
-        OkHttpUtils
-                .get()
-                .addParams("kwtype", "0")
-                .addParams("keyword", URLEncoder.encode(keyword))
-                .addParams("searchtype.x", "48")
-                .addParams("searchtype.y", "21")
-                .addParams("searchtype", "%E5%BD%B1%E8%A7%86%E6%90%9C%E7%B4%A2")
-                .url("http://so.piaohua.com:8909/plus/search.php?")
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-                        UIUtils.showToast(e.getLocalizedMessage());
-                    }
+        System.out.println("aaa:"+keyword);
 
-                    @Override
-                    public void onResponse(String response, int id) {
-                        if (!MyTextUtils.isEmpty(response)) {
-                            parseSearchResult(response);
-                        } else {
-                            loadDataComplete(LoadingPage.ResultState.STATE_ERROR);
+        try {
+            System.out.println("aaa:"+URLEncoder.encode(keyword,"UTF-8"));
+            OkHttpUtils
+                    .get()
+                    .addParams("kwtype", "0")
+                    .addParams("keyword", keyword)
+                    .addParams("searchtype.x", "48")
+                    .addParams("searchtype.y", "21")
+                    .addParams("searchtype", "%E5%BD%B1%E8%A7%86%E6%90%9C%E7%B4%A2")
+                    .url("http://so.piaohua.com:8909/plus/search.php?")
+                    .build()
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onError(Call call, Exception e, int id) {
+                            UIUtils.showToast(e.getLocalizedMessage());
                         }
 
-                    }
-                });
+                        @Override
+                        public void onResponse(String response, int id) {
+                            if (!MyTextUtils.isEmpty(response)) {
+                                parseSearchResult(response);
+                            } else {
+                                loadDataComplete(LoadingPage.ResultState.STATE_ERROR);
+                            }
+
+                        }
+                    });
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 
     private void parseSearchResult(String response) {
         String searchResult = ProcessData.getSearchResult(response);
         loadDataComplete(LoadingPage.ResultState.STATE_SUCCESS);
-        RichText.fromHtml(searchResult).noImage(true).urlClick(new OnURLClickListener() {
+        RichText.fromHtml(searchResult).noImage(true).autoFix(false).urlClick(new OnURLClickListener() {
             @Override
             public boolean urlClicked(String url) {
                 UIUtils.showToast(url);
                 return true;
             }
         }).into(tvSearchResult);
-        tvSearchResult.setText(searchResult);
+//        tvSearchResult.setText(searchResult);
     }
 
 }

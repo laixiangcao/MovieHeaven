@@ -1,16 +1,12 @@
 package com.jiumeng.movieheaven2.fragment.other;
 
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.fragment.base.BaseLoadFragment;
-import com.jiumeng.movieheaven2.views.FlowLayout;
 import com.jiumeng.movieheaven2.views.LoadingPage;
 
 import butterknife.BindView;
@@ -28,8 +24,7 @@ public class SearchFragment extends BaseLoadFragment {
     TextView tvClearHistory;
     @BindView(R.id.recy_hot_search)
     RecyclerView recyHotSearch;
-    @BindView(R.id.fl_search_history)
-    FlowLayout flSearchHistory;
+
 
     @Override
     protected View onCreateSuccessView() {
@@ -37,7 +32,6 @@ public class SearchFragment extends BaseLoadFragment {
         ButterKnife.bind(this, view);
         recyHotSearch.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyHotSearch.setHasFixedSize(true);
-//        recyHotSearch.setAdapter();
         return view;
     }
 

@@ -12,7 +12,6 @@ import com.jiumeng.movieheaven2.activity.BaseActivity;
 import com.jiumeng.movieheaven2.activity.BlankActivity;
 import com.jiumeng.movieheaven2.utils.ImageCatchUtil;
 import com.jiumeng.movieheaven2.utils.PrefUtils;
-import com.jiumeng.movieheaven2.utils.UIUtils;
 import com.jiumeng.movieheaven2.views.ToggleButton;
 
 import butterknife.BindView;
@@ -30,7 +29,7 @@ public class SettingFragment extends Fragment {
     TextView tvCacheSize;
     @BindView(R.id.tb_dbclick_quit)
     ToggleButton tbDbClickQuit;
-    @BindView(R.id.tb_detection_update)
+    @BindView(R.id.tb_is_silent_update)
     ToggleButton tbDetectionUpdate;
     @BindView(R.id.tb_loading_img)
     ToggleButton tbLoadingImg;
@@ -48,17 +47,18 @@ public class SettingFragment extends Fragment {
 
         setCacheSize();
 
-        if (PrefUtils.getBoolean("isDblclickQuit")) {
+        //双击退出、静默更新、加载图片 默认为true
+        if (PrefUtils.getBoolean("isDblclickQuit",true)) {
             tbDbClickQuit.setToggleOn();
         } else {
             tbDbClickQuit.setToggleOff();
         }
-        if (PrefUtils.getBoolean("isDetectionUpdate")) {
+        if (PrefUtils.getBoolean("isSilentUpdate",true)) {
             tbDetectionUpdate.setToggleOn();
         } else {
             tbDetectionUpdate.setToggleOff();
         }
-        if (PrefUtils.getBoolean("isLoadPicture")) {
+        if (PrefUtils.getBoolean("isLoadPicture",true)) {
             tbLoadingImg.setToggleOn();
         } else {
             tbLoadingImg.setToggleOff();
@@ -86,7 +86,7 @@ public class SettingFragment extends Fragment {
 
     }
 
-    private void setCacheSize(){
+    private void setCacheSize() {
         String cacheSize = ImageCatchUtil.getInstance().getCacheSize();
         tvCacheSize.setText(cacheSize);
     }

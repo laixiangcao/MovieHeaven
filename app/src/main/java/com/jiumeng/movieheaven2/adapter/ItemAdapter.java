@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.jiumeng.movieheaven2.R;
 import com.jiumeng.movieheaven2.engine.GlideRoundTransform;
 import com.jiumeng.movieheaven2.entity.MovieEntity;
+import com.jiumeng.movieheaven2.utils.UIUtils;
 
 import java.util.ArrayList;
 
@@ -107,7 +108,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         if (dataList.get(position).jpgList!=null){
             String imgUrl = dataList.get(position).jpgList.get(0);
             if (imgUrl != null) {
-                Glide.with(context).load(imgUrl).error(R.drawable.default_movie_image).transform(new GlideRoundTransform(context)).into(viewHolder.picture);
+                Glide.with(context).load(imgUrl).error(R.drawable.default_movie_image).into(viewHolder.picture);
             }
         }
 

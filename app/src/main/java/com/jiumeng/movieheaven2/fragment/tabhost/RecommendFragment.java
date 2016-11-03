@@ -7,8 +7,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.jiumeng.movieheaven2.R;
-import com.jiumeng.movieheaven2.activity.BlankActivity;
-import com.jiumeng.movieheaven2.activity.MovieDetailsActivity;
 import com.jiumeng.movieheaven2.activity.MovieSearchActivity;
 import com.jiumeng.movieheaven2.adapter.ViewPageFragmentAdapter;
 import com.jiumeng.movieheaven2.entity.ViewPageInfoEntity;
@@ -18,7 +16,6 @@ import com.jiumeng.movieheaven2.fragment.viewpager.HotestVpFragment;
 import com.jiumeng.movieheaven2.fragment.viewpager.NewestVpFragment;
 import com.jiumeng.movieheaven2.fragment.viewpager.RecommendVpFragment;
 import com.jiumeng.movieheaven2.network.NetWorkApi;
-import com.jiumeng.movieheaven2.utils.UIUtils;
 import com.jiumeng.movieheaven2.views.LoadingPage;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 

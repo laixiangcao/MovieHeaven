@@ -11,6 +11,7 @@ import com.jiumeng.movieheaven2.utils.UIUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.update.BmobUpdateAgent;
 
 
 /**
@@ -54,6 +55,8 @@ public class OboutFragment extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_check_update:
+                //手动检测更新
+                BmobUpdateAgent.forceUpdate(getContext());
                 break;
             case R.id.rl_grade:
                 break;

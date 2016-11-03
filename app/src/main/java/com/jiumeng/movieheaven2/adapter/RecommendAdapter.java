@@ -31,7 +31,7 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.Reco
 
     @Override
     public void onBindViewHolder(RecommendHolder holder, int position) {
-        if (dataList.get(position).jpgList!=null){
+        if (dataList.get(position).jpgList!=null&&dataList.get(position).jpgList.size()>0){
             Glide.with(UIUtils.getContext()).load(dataList.get(position).jpgList.get(0)).into(holder.img);
         }
     }
