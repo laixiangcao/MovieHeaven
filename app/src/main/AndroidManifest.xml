@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jiumeng.movieheaven2">
+    package="com.jiumeng.movieheaven">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,49 +14,42 @@
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
     <!--ShardSkd 相关权限-->
-    <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
-        android:name=".global.MyApplication"
+        android:name="com.jiumeng.movieheaven.global.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SplashActivity"
-            android:theme="@style/SplashTheme">
+
+        <activity
+            android:name="com.jiumeng.movieheaven.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.MainActivity"
-            android:launchMode="singleTop">
 
         </activity>
         <activity
-            android:name=".activity.BlankActivity"
+            android:name="com.jiumeng.movieheaven.ui.activity.BlankActivity"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".activity.MovieDetailsActivity"
-            android:launchMode="singleTop"
+            android:name=".ui.activity.MovieDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.MainActivity" />
+                android:value="com.jiumeng.movieheaven.ui.activity.MainActivity" />
         </activity>
 
         <activity
-            android:name=".activity.MovieSearchActivity"
-            android:launchMode="singleTop" />
+            android:name="com.jiumeng.movieheaven.ui.activity.MovieSearchActivity" />
 
         <activity
             android:name="cn.bmob.v3.update.UpdateDialogActivity"
@@ -88,14 +81,14 @@
 
         <!--微信分享回调 -->
         <activity
-            android:name=".wxapi.WXEntryActivity"
+            android:name="cn.sharesdk.onekeyshare.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <meta-data
-            android:name="com.jiumeng.movieheaven2.utils.MyGlideModule"
+            android:name="com.jiumeng.movieheaven.utils.MyGlideModule"
             android:value="GlideModule" />
     </application>
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jiumeng.movieheaven2.views.CustomerScrollView
+<com.jiumeng.movieheaven.ui.views.CustomerScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
@@ -26,7 +26,7 @@
                 android:textColor="@color/main_black"
                 android:textSize="@dimen/text_size_16"/>
 
-            <com.jiumeng.movieheaven2.views.ToggleButton
+            <com.jiumeng.movieheaven.ui.views.ToggleButton
                 android:id="@+id/tb_accept"
                 android:layout_width="45dp"
                 android:layout_height="20dp"
@@ -49,7 +49,7 @@
                 android:textColor="@color/main_black"
                 android:textSize="@dimen/text_size_16"/>
 
-            <com.jiumeng.movieheaven2.views.ToggleButton
+            <com.jiumeng.movieheaven.ui.views.ToggleButton
                 android:id="@+id/tb_voice"
                 android:layout_width="45dp"
                 android:layout_height="20dp"
@@ -68,7 +68,7 @@
                 android:textColor="@color/main_black"
                 android:textSize="@dimen/text_size_16"/>
 
-            <com.jiumeng.movieheaven2.views.ToggleButton
+            <com.jiumeng.movieheaven.ui.views.ToggleButton
                 android:id="@+id/tb_vibration"
                 android:layout_width="45dp"
                 android:layout_height="20dp"
@@ -91,7 +91,7 @@
                 android:textColor="@color/main_black"
                 android:textSize="@dimen/text_size_16"/>
 
-            <com.jiumeng.movieheaven2.views.ToggleButton
+            <com.jiumeng.movieheaven.ui.views.ToggleButton
                 android:id="@+id/tb_app_exit"
                 android:layout_width="45dp"
                 android:layout_height="20dp"
@@ -102,4 +102,4 @@
             style="@style/h_line"/>
     </LinearLayout>
 
-</com.jiumeng.movieheaven2.views.CustomerScrollView>
+</com.jiumeng.movieheaven.ui.views.CustomerScrollView>

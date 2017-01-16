@@ -11,7 +11,6 @@
 
     <color name="black">#000000</color>
     <color name="grey">#9E9E9E</color>
-    <color name="transparent">#00000000</color>
     <color name="main_green">#0b9a27</color>
 
     <color name="green_light">#33CA7F</color>
@@ -44,6 +43,4 @@
     <color name="day_layout_bg_normal">#f6f6f6</color>
     <color name="day_layout_bg_pressed">#dfdfdf</color>
 
-    <color name="main_link_text_color">#ffbedfff</color>
-    <color name="timeline_clickable_text_highlighted_background">#ffbedfff</color>
 </resources>
